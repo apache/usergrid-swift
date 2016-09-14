@@ -2,6 +2,7 @@
 
 [![Platform](https://img.shields.io/cocoapods/p/UsergridSDK.svg?style=flat)](http://cocoadocs.org/docsets/UsergridSDK)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/UsergridSDK.svg)](https://cocoapods.org/pods/UsergridSDK)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 Usergrid SDK written in Swift 
 
@@ -16,9 +17,7 @@ Usergrid SDK written in Swift
 
 ## Installation
 
-> **Embedded frameworks require a minimum deployment target of iOS 8 or OS X Mavericks (10.9).**
-
-### CocoaPods
+### [CocoaPods](http://cocoapods.org)
 
 > **CocoaPods 0.39.0+ is required to build the UsergridSDK library.**
 
@@ -37,7 +36,29 @@ Then, run the following command:
 $ pod install
 ```
 
+### [Carthage](https://github.com/Carthage/Carthage)
+
+Carthage is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate the UsergridSDK into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "apache/usergrid-swift" "master"
+```
+
+Run `carthage update` to build the framework and drag the built `UsergridSDK.framework` into your Xcode project.
+
+
 ### Embedded Framework
+
+> **Embedded frameworks require a minimum deployment target of iOS 8 or OS X Mavericks (10.9).**
 
 - Open up Terminal, `cd` into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
 
@@ -51,7 +72,7 @@ $ git init
 $ git submodule add https://github.com/apache/usergrid
 ```
 
-- Open the `sdks/swift` folder, and drag the `UsergridSDK.xcodeproj` into the Project Navigator of your application's Xcode project.
+- Drag the `UsergridSDK.xcodeproj` into the Project Navigator of your application's Xcode project.
 
 > It should appear nested underneath your application's blue project icon.
 

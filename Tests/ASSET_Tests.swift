@@ -241,7 +241,7 @@ class ASSET_Tests: XCTestCase {
                                 "etag":"dfa7421ea4f35d33e12ba93979a46b7e",
                                 "checkSum":"dfa7421ea4f35d33e12ba93979a46b7e",
                                 "content-length":1417896,
-                                "last-modified":1455728898545] as [String : Any]
+                                "last-modified":Int(Date().timeIntervalSince1970 * Double(1000))] as [String : Any]
         
         let fileMetaData = UsergridFileMetaData(fileMetaDataJSON:fileMetaDataDict)
 
