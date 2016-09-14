@@ -102,8 +102,8 @@ class GET_Tests: XCTestCase {
                 XCTAssertTrue(NSThread.isMainThread())
                 XCTAssertTrue(nextPageResponse.ok)
                 XCTAssertNotNil(nextPageResponse)
-                XCTAssertFalse(nextPageResponse.hasNextPage)
-                XCTAssertEqual(nextPageResponse.entities!.count, 7)
+                XCTAssertTrue(nextPageResponse.hasNextPage)
+                XCTAssertEqual(nextPageResponse.entities!.count, 10)
                 getExpect.fulfill()
             }
         }
