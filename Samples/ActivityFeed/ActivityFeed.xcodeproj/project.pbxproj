@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		587A839139502BE0380CD1DA /* Pods_ActivityFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 383F79CDBA14ABFBFE0D157C /* Pods_ActivityFeed.framework */; };
 		634855401C726AE9005FE016 /* UsergridSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 634855331C726AD3005FE016 /* UsergridSDK.framework */; };
 		634855411C726AE9005FE016 /* UsergridSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 634855331C726AD3005FE016 /* UsergridSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		634855451C726AF7005FE016 /* UsergridSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 634855351C726AD3005FE016 /* UsergridSDK.framework */; };
@@ -164,6 +165,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		27CE17FF2D4FC59A741243ED /* Pods-ActivityFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityFeed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ActivityFeed/Pods-ActivityFeed.debug.xcconfig"; sourceTree = "<group>"; };
+		383F79CDBA14ABFBFE0D157C /* Pods_ActivityFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ActivityFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F7C629490712A1E96D1C945 /* Pods-ActivityFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityFeed.release.xcconfig"; path = "Pods/Target Support Files/Pods-ActivityFeed/Pods-ActivityFeed.release.xcconfig"; sourceTree = "<group>"; };
 		634855281C726AD3005FE016 /* UsergridSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UsergridSDK.xcodeproj; path = ../../UsergridSDK.xcodeproj; sourceTree = "<group>"; };
 		6348D95B1C4EAC0B005C978C /* WatchSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6348D95E1C4EAC0B005C978C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -206,12 +210,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				634855401C726AE9005FE016 /* UsergridSDK.framework in Frameworks */,
+				587A839139502BE0380CD1DA /* Pods_ActivityFeed.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A56E0389E87D6C6C996BF007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2112A2F4682490176F99F6BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				383F79CDBA14ABFBFE0D157C /* Pods_ActivityFeed.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		634855291C726AD3005FE016 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +275,8 @@
 				6348D95C1C4EAC0B005C978C /* WatchSample */,
 				6348D96B1C4EAC0B005C978C /* WatchSample Extension */,
 				6355FEC21BFE4FC600E07170 /* Products */,
+				CDFE621065D6B589E1F28562 /* Pods */,
+				2112A2F4682490176F99F6BA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -322,6 +344,15 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		CDFE621065D6B589E1F28562 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				27CE17FF2D4FC59A741243ED /* Pods-ActivityFeed.debug.xcconfig */,
+				5F7C629490712A1E96D1C945 /* Pods-ActivityFeed.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -331,6 +362,7 @@
 			buildPhases = (
 				6348D9591C4EAC0B005C978C /* Resources */,
 				6348D97B1C4EAC0C005C978C /* Embed App Extensions */,
+				A56E0389E87D6C6C996BF007 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -365,11 +397,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6355FED31BFE4FC600E07170 /* Build configuration list for PBXNativeTarget "ActivityFeed" */;
 			buildPhases = (
+				472DB0E2A40503BB734CFCDA /* [CP] Check Pods Manifest.lock */,
 				6355FEBD1BFE4FC600E07170 /* Sources */,
 				6355FEBE1BFE4FC600E07170 /* Frameworks */,
 				6355FEBF1BFE4FC600E07170 /* Resources */,
 				6348D97D1C4EAC0C005C978C /* Embed Watch Content */,
 				634855441C726AE9005FE016 /* Embed Frameworks */,
+				A3199695972495C1CCD1CB10 /* [CP] Embed Pods Frameworks */,
+				91D9D0F42FF78FB16CE0E42F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -389,17 +424,20 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Apigee Inc.";
 				TargetAttributes = {
 					6348D95A1C4EAC0B005C978C = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					6348D9661C4EAC0B005C978C = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					6355FEC01BFE4FC600E07170 = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -511,6 +549,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		472DB0E2A40503BB734CFCDA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		91D9D0F42FF78FB16CE0E42F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ActivityFeed/Pods-ActivityFeed-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3199695972495C1CCD1CB10 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ActivityFeed/Pods-ActivityFeed-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6348D9631C4EAC0B005C978C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -597,43 +683,45 @@
 		6348D9761C4EAC0C005C978C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = WatchSample_Extension;
 				INFOPLIST_FILE = WatchSample/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.activityfeed.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
 			name = Debug;
 		};
 		6348D9771C4EAC0C005C978C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = WatchSample_Extension;
 				INFOPLIST_FILE = WatchSample/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.activityfeed.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
 			name = Release;
 		};
 		6348D9781C4EAC0C005C978C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "WatchSample Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -641,15 +729,16 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
 			name = Debug;
 		};
 		6348D9791C4EAC0C005C978C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "WatchSample Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -657,8 +746,10 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
 			};
 			name = Release;
 		};
@@ -747,12 +838,13 @@
 		};
 		6355FED41BFE4FC600E07170 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27CE17FF2D4FC59A741243ED /* Pods-ActivityFeed.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Source/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.activityfeed;
@@ -761,17 +853,19 @@
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		6355FED51BFE4FC600E07170 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F7C629490712A1E96D1C945 /* Pods-ActivityFeed.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Source/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.activityfeed;
@@ -779,6 +873,8 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

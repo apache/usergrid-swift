@@ -40,29 +40,29 @@ public class UsergridManager {
         ActivityEntity.registerSubclass()
     }
 
-    static func loginUser(username:String, password:String, completion:UsergridUserAuthCompletionBlock) {
+    static func loginUser(_ username:String, password:String, completion:UsergridUserAuthCompletionBlock) {
         let userAuth = UsergridUserAuth(username: username, password: password)
         Usergrid.authenticateUser(userAuth, completion: completion)
     }
 
-    static func createUser(name:String, username:String, email:String, password:String, completion:UsergridResponseCompletion) {
-        let user = UsergridUser(name: name, propertyDict: [UsergridUserProperties.Username.stringValue:username,
-                                                            UsergridUserProperties.Email.stringValue:email,
-                                                            UsergridUserProperties.Password.stringValue:password])
+    static func createUser(_ name:String, username:String, email:String, password:String, completion:UsergridResponseCompletion) {
+        let user = UsergridUser(name: name, propertyDict: [UsergridUserProperties.username.stringValue:username,
+                                                            UsergridUserProperties.email.stringValue:email,
+                                                            UsergridUserProperties.password.stringValue:password])
         user.create(completion)
     }
 
-    static func getFeedMessages(completion:UsergridResponseCompletion) {
-        Usergrid.GET(UsergridQuery("users/me/feed").desc(UsergridEntityProperties.Created.stringValue), queryCompletion: completion)
+    static func getFeedMessages(_ completion:UsergridResponseCompletion) {
+        Usergrid.GET(UsergridQuery("users/me/feed").desc(UsergridEntityProperties.created.stringValue), queryCompletion: completion)
     }
 
-    static func postFeedMessage(text:String,completion:UsergridResponseCompletion) {
+    static func postFeedMessage(_ text:String,completion:UsergridResponseCompletion) {
         let currentUser = Usergrid.currentUser!
 
         let verb = "post"
         let content = text
 
-        var actorDictionary = [String:AnyObject]()
+        var actorDictionary = [String:Any]()
         actorDictionary["displayName"] = currentUser.name ?? currentUser.usernameOrEmail ?? ""
         actorDictionary["email"] = currentUser.email ?? ""
         if let imageURL = currentUser.picture {
@@ -72,7 +72,7 @@ public class UsergridManager {
         Usergrid.POST("users/me/activities", jsonBody: ["actor":actorDictionary,"verb":verb,"content":content], completion: completion)
     }
 
-    static func followUser(username:String, completion:UsergridResponseCompletion) {
+    static func followUser(_ username:String, completion:UsergridResponseCompletion) {
         Usergrid.connect("users", entityID: "me", relationship: "following", toType: "users", toName: username, completion: completion)
     }
 }

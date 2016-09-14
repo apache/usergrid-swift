@@ -43,29 +43,29 @@ import UIKit
     }
 
     func setUp() {
-        addTarget(self, action: #selector(FormTextField.actionKeyboardButtonTapped(_:)), forControlEvents: .EditingDidEndOnExit)
+        addTarget(self, action: #selector(FormTextField.actionKeyboardButtonTapped(_:)), for: .editingDidEndOnExit)
     }
 
-    func actionKeyboardButtonTapped(sender: UITextField) {
+    func actionKeyboardButtonTapped(_ sender: UITextField) {
         switch nextResponderField {
         case let button as UIButton:
-            if button.enabled {
-                button.sendActionsForControlEvents(.TouchUpInside)
+            if button.isEnabled {
+                button.sendActions(for: .touchUpInside)
             } else {
                 resignFirstResponder()
             }
-        case .Some(let responder):
+        case .some(let responder):
             responder.becomeFirstResponder()
         default:
             resignFirstResponder()
         }
     }
 
-    override func textRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, inset, 0)
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.insetBy(dx: inset, dy: 0)
     }
 
-    override func editingRectForBounds(bounds: CGRect) -> CGRect {
-        return textRectForBounds(bounds)
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return textRect(forBounds: bounds)
     }
 }

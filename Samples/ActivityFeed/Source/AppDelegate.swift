@@ -34,10 +34,10 @@ import UsergridSDK
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        application.registerUserNotificationSettings(UIUserNotificationSettings( forTypes: [.Alert, .Badge, .Sound], categories: nil))
+        UINavigationBar.appearance().tintColor = UIColor.white
+        application.registerUserNotificationSettings(UIUserNotificationSettings( types: [.alert, .badge, .sound], categories: nil))
         application.registerForRemoteNotifications()
 
         // Initialize the Usergrid shared instance.
@@ -48,17 +48,17 @@ import UsergridSDK
         if Usergrid.currentUser != nil {
             let rootViewController = self.window!.rootViewController as! UINavigationController
             let loginViewController = rootViewController.viewControllers.first!
-            loginViewController.performSegueWithIdentifier("loginSuccessNonAnimatedSegue", sender: loginViewController)
+            loginViewController.performSegue(withIdentifier: "loginSuccessNonAnimatedSegue", sender: loginViewController)
         }
 
         return true
     }
 
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Usergrid.applyPushToken(deviceToken, notifierID: UsergridManager.NOTIFIER_ID, completion: nil)
     }
 
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Application failed to register for remote notifications")
     }
 }

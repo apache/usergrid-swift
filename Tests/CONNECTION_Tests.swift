@@ -30,7 +30,7 @@ import XCTest
 class CONNECTION_Tests: XCTestCase {
 
     let clientAuth = UsergridAppAuth(clientId: "b3U6THNcevskEeOQZLcUROUUVA", clientSecret: "b3U6RZHYznP28xieBzQPackFPmmnevU")
-    private static let collectionName = "publicevent"
+    fileprivate static let collectionName = "publicevent"
 
     override func setUp() {
         super.setUp()
@@ -44,10 +44,10 @@ class CONNECTION_Tests: XCTestCase {
 
     func test_CLIENT_AUTH() {
 
-        let authExpect = self.expectationWithDescription("\(#function)")
-        Usergrid.authMode = .App
+        let authExpect = self.expectation(description: "\(#function)")
+        Usergrid.authMode = .app
         Usergrid.authenticateApp(clientAuth) { auth,error in
-            XCTAssertTrue(NSThread.isMainThread())
+            XCTAssertTrue(Thread.isMainThread)
             XCTAssertNil(error)
             XCTAssertNotNil(Usergrid.appAuth)
 
@@ -57,7 +57,7 @@ class CONNECTION_Tests: XCTestCase {
                 XCTAssertNotNil(appAuth.expiry)
 
                 Usergrid.GET(CONNECTION_Tests.collectionName) { (response) in
-                    XCTAssertTrue(NSThread.isMainThread())
+                    XCTAssertTrue(Thread.isMainThread)
                     XCTAssertNotNil(response)
                     XCTAssertTrue(response.ok)
                     XCTAssertTrue(response.hasNextPage)
@@ -68,12 +68,12 @@ class CONNECTION_Tests: XCTestCase {
                     XCTAssertEqual(entity.type, CONNECTION_Tests.collectionName)
 
                     entity.connect("likes", toEntity: entityToConnect) { (response) -> Void in
-                        XCTAssertTrue(NSThread.isMainThread())
+                        XCTAssertTrue(Thread.isMainThread)
                         XCTAssertNotNil(response)
                         XCTAssertTrue(response.ok)
 
-                        entity.getConnections(.Out, relationship: "likes", query:nil) { (response) -> Void in
-                            XCTAssertTrue(NSThread.isMainThread())
+                        entity.getConnections(.out, relationship: "likes", query:nil) { (response) -> Void in
+                            XCTAssertTrue(Thread.isMainThread)
                             XCTAssertNotNil(response)
                             XCTAssertTrue(response.ok)
 
@@ -82,12 +82,12 @@ class CONNECTION_Tests: XCTestCase {
                             XCTAssertEqual(connectedEntity.uuidOrName, entityToConnect.uuidOrName)
 
                             entity.disconnect("likes", fromEntity: connectedEntity) { (response) -> Void in
-                                XCTAssertTrue(NSThread.isMainThread())
+                                XCTAssertTrue(Thread.isMainThread)
                                 XCTAssertNotNil(response)
                                 XCTAssertTrue(response.ok)
 
-                                entity.getConnections(.Out, relationship: "likes", query:nil) { (response) -> Void in
-                                    XCTAssertTrue(NSThread.isMainThread())
+                                entity.getConnections(.out, relationship: "likes", query:nil) { (response) -> Void in
+                                    XCTAssertTrue(Thread.isMainThread)
                                     XCTAssertNotNil(response)
                                     XCTAssertTrue(response.ok)
                                     authExpect.fulfill()
@@ -100,6 +100,6 @@ class CONNECTION_Tests: XCTestCase {
                 authExpect.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(20, handler: nil)
+        self.waitForExpectations(timeout: 20, handler: nil)
     }
 }

@@ -32,7 +32,7 @@ public class MessageTableViewCell : UITableViewCell {
     var titleLabel : UILabel
     var bodyLabel  : UILabel
     var thumbnailView : UIImageView
-    var indexPath : NSIndexPath?
+    var indexPath : IndexPath?
 
     public static let kMessageTableViewCellMinimumHeight: CGFloat = 50.0;
     public static let kMessageTableViewCellAvatarHeight: CGFloat = 30.0;
@@ -48,8 +48,8 @@ public class MessageTableViewCell : UITableViewCell {
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        self.selectionStyle = UITableViewCellSelectionStyle.None
-        self.backgroundColor = UIColor.whiteColor()
+        self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.backgroundColor = UIColor.white
         self.configureSubviews()
     }
 
@@ -58,30 +58,30 @@ public class MessageTableViewCell : UITableViewCell {
     }
 
     override public func prepareForReuse() {
-        self.selectionStyle = UITableViewCellSelectionStyle.None
-        self.titleLabel.font = UIFont.boldSystemFontOfSize(MessageTableViewCell.defaultFontSize)
-        self.bodyLabel.font = UIFont.boldSystemFontOfSize(13)
+        self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: MessageTableViewCell.defaultFontSize)
+        self.bodyLabel.font = UIFont.boldSystemFont(ofSize: 13)
         self.titleLabel.text = ""
         self.bodyLabel.text = ""
     }
 
     func configureSubviews() {
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.titleLabel.backgroundColor = UIColor.clearColor()
-        self.titleLabel.userInteractionEnabled = false
+        self.titleLabel.backgroundColor = UIColor.clear
+        self.titleLabel.isUserInteractionEnabled = false
         self.titleLabel.numberOfLines = 0
-        self.titleLabel.textColor = UIColor.grayColor()
-        self.titleLabel.font = UIFont.boldSystemFontOfSize(MessageTableViewCell.defaultFontSize)
+        self.titleLabel.textColor = UIColor.gray
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: MessageTableViewCell.defaultFontSize)
 
         self.bodyLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.bodyLabel.backgroundColor = UIColor.clearColor()
-        self.bodyLabel.userInteractionEnabled = false
+        self.bodyLabel.backgroundColor = UIColor.clear
+        self.bodyLabel.isUserInteractionEnabled = false
         self.bodyLabel.numberOfLines = 0
-        self.bodyLabel.textColor = UIColor.grayColor()
-        self.bodyLabel.font = UIFont.boldSystemFontOfSize(13)
+        self.bodyLabel.textColor = UIColor.gray
+        self.bodyLabel.font = UIFont.boldSystemFont(ofSize: 13)
 
         self.thumbnailView.translatesAutoresizingMaskIntoConstraints = false
-        self.thumbnailView.userInteractionEnabled = false
+        self.thumbnailView.isUserInteractionEnabled = false
         self.thumbnailView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         self.thumbnailView.layer.cornerRadius = 15
         self.thumbnailView.layer.masksToBounds = true
@@ -90,12 +90,12 @@ public class MessageTableViewCell : UITableViewCell {
         self.contentView.addSubview(self.titleLabel)
         self.contentView.addSubview(self.bodyLabel)
 
-        let views = ["thumbnailView":self.thumbnailView, "titleLabel":self.titleLabel, "bodyLabel":self.bodyLabel]
+        let views = ["thumbnailView":self.thumbnailView, "titleLabel":self.titleLabel, "bodyLabel":self.bodyLabel] as [String : Any]
         let metrics = ["thumbSize":MessageTableViewCell.kMessageTableViewCellAvatarHeight, "padding":15, "right":10, "left":5]
 
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-left-[thumbnailView(thumbSize)]-right-[titleLabel(>=0)]-right-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-left-[thumbnailView(thumbSize)]-right-[bodyLabel(>=0)]-right-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-right-[titleLabel(20)]-left-[bodyLabel(>=0@999)]-left-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-right-[thumbnailView(thumbSize)]-(>=0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-left-[thumbnailView(thumbSize)]-right-[titleLabel(>=0)]-right-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-left-[thumbnailView(thumbSize)]-right-[bodyLabel(>=0)]-right-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-right-[titleLabel(20)]-left-[bodyLabel(>=0@999)]-left-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-right-[thumbnailView(thumbSize)]-(>=0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: metrics, views: views))
     }
 }

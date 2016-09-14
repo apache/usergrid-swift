@@ -47,13 +47,13 @@ public class UsergridDevice : UsergridEntity {
     // MARK: - Instance Properties -
 
     /// Property helper method for the `UsergridDevice` objects device model.
-    public var model: String { return super[UsergridDeviceProperties.Model.stringValue] as! String }
+    public var model: String { return super[UsergridDeviceProperties.model.stringValue] as! String }
 
     /// Property helper method for the `UsergridDevice` objects device platform.
-    public var platform: String { return super[UsergridDeviceProperties.Platform.stringValue] as! String }
+    public var platform: String { return super[UsergridDeviceProperties.platform.stringValue] as! String }
 
     /// Property helper method for the `UsergridDevice` objects device operating system version.
-    public var osVersion: String { return super[UsergridDeviceProperties.OSVersion.stringValue] as! String }
+    public var osVersion: String { return super[UsergridDeviceProperties.osVersion.stringValue] as! String }
 
     /// The shared instance of `UsergridDevice`.
     public static var sharedDevice: UsergridDevice = UsergridDevice.getOrCreateSharedDeviceFromKeychain()
@@ -80,7 +80,7 @@ public class UsergridDevice : UsergridEntity {
 
      - returns: A new `UsergridDevice` object.
      */
-    required public init(type:String, name:String? = nil, propertyDict:[String:AnyObject]? = nil) {
+    required public init(type:String, name:String? = nil, propertyDict:[String:Any]? = nil) {
         super.init(type: type, name: name, propertyDict: propertyDict)
     }
 
@@ -102,8 +102,8 @@ public class UsergridDevice : UsergridEntity {
 
      - parameter aCoder: The encoder.
      */
-    public override func encodeWithCoder(aCoder: NSCoder) {
-        super.encodeWithCoder(aCoder)
+    public override func encode(with aCoder: NSCoder) {
+        super.encode(with: aCoder)
     }
 
     /**
@@ -113,7 +113,7 @@ public class UsergridDevice : UsergridEntity {
 
      - parameter completion: An optional completion block that, if successful, will contain the updated/saved `UsergridEntity` object.
      */
-    public override func save(completion: UsergridResponseCompletion? = nil) {
+    public override func save(_ completion: UsergridResponseCompletion? = nil) {
         self.save(Usergrid.sharedInstance, completion: completion)
     }
 
@@ -126,14 +126,14 @@ public class UsergridDevice : UsergridEntity {
      - parameter client:     The client to use when saving.
      - parameter completion: An optional completion block that, if successful, will contain the updated/saved `UsergridEntity` object.
      */
-    public override func save(client: UsergridClient, completion: UsergridResponseCompletion? = nil) {
+    public override func save(_ client: UsergridClient, completion: UsergridResponseCompletion? = nil) {
         super.save(client) { (response) in
             if( response.ok ) {
                 if( self == UsergridDevice.sharedDevice || self.isEqualToEntity(UsergridDevice.sharedDevice)) {
                     UsergridDevice.saveSharedDeviceToKeychain()
                 }
             }
-            completion?(response:response)
+            completion?(response)
         }
     }
 
@@ -154,7 +154,7 @@ public class UsergridDevice : UsergridEntity {
         let uuid = usergridDevice["uuid"]
         ```
     */
-    override public subscript(propertyName: String) -> AnyObject? {
+    override public subscript(propertyName: String) -> Any? {
         get {
             return super[propertyName]
         }
@@ -172,22 +172,22 @@ public class UsergridDevice : UsergridEntity {
 
     - returns: A property dictionary with the common properties set.
     */
-    public static func commonDevicePropertyDict() -> [String:AnyObject] {
-        var commonDevicePropertyDict: [String:AnyObject] = [:]
-        commonDevicePropertyDict[UsergridEntityProperties.EntityType.stringValue] = UsergridDevice.DEVICE_ENTITY_TYPE
+    public static func commonDevicePropertyDict() -> [String:Any] {
+        var commonDevicePropertyDict: [String:Any] = [:]
+        commonDevicePropertyDict[UsergridEntityProperties.type.stringValue] = UsergridDevice.DEVICE_ENTITY_TYPE
 
         #if os(watchOS)
-            commonDevicePropertyDict[UsergridDeviceProperties.Model.stringValue] = WKInterfaceDevice.currentDevice().model
-            commonDevicePropertyDict[UsergridDeviceProperties.Platform.stringValue] = WKInterfaceDevice.currentDevice().systemName
-            commonDevicePropertyDict[UsergridDeviceProperties.OSVersion.stringValue] = WKInterfaceDevice.currentDevice().systemVersion
+            commonDevicePropertyDict[UsergridDeviceProperties.model.stringValue] = WKInterfaceDevice.current().model
+            commonDevicePropertyDict[UsergridDeviceProperties.platform.stringValue] = WKInterfaceDevice.current().systemName
+            commonDevicePropertyDict[UsergridDeviceProperties.osVersion.stringValue] = WKInterfaceDevice.current().systemVersion
         #elseif os(iOS) || os(tvOS)
-            commonDevicePropertyDict[UsergridDeviceProperties.Model.stringValue] = UIDevice.currentDevice().model
-            commonDevicePropertyDict[UsergridDeviceProperties.Platform.stringValue] = UIDevice.currentDevice().systemName
-            commonDevicePropertyDict[UsergridDeviceProperties.OSVersion.stringValue] = UIDevice.currentDevice().systemVersion
+            commonDevicePropertyDict[UsergridDeviceProperties.model.stringValue] = UIDevice.current.model
+            commonDevicePropertyDict[UsergridDeviceProperties.platform.stringValue] = UIDevice.current.systemName
+            commonDevicePropertyDict[UsergridDeviceProperties.osVersion.stringValue] = UIDevice.current.systemVersion
         #elseif os(OSX)
-            commonDevicePropertyDict[UsergridDeviceProperties.Model.stringValue] = "Mac"
-            commonDevicePropertyDict[UsergridDeviceProperties.Platform.stringValue] = "OSX"
-            commonDevicePropertyDict[UsergridDeviceProperties.OSVersion.stringValue] = NSProcessInfo.processInfo().operatingSystemVersionString
+            commonDevicePropertyDict[UsergridDeviceProperties.model.stringValue] = "Mac"
+            commonDevicePropertyDict[UsergridDeviceProperties.platform.stringValue] = "OSX"
+            commonDevicePropertyDict[UsergridDeviceProperties.osVersion.stringValue] = ProcessInfo.processInfo.operatingSystemVersionString
         #endif
 
         return commonDevicePropertyDict
@@ -205,8 +205,8 @@ public class UsergridDevice : UsergridEntity {
     - parameter pushToken:  The push token from Apple.
     - parameter notifierID: The notifier ID.
     */
-    internal func applyPushToken(pushToken: NSData, notifierID: String) {
-        self[notifierID + USERGRID_NOTIFIER_ID_SUFFIX] = pushToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>")).stringByReplacingOccurrencesOfString(" ", withString: "")
+    internal func applyPushToken(_ pushToken: Data, notifierID: String) {
+        self[notifierID + USERGRID_NOTIFIER_ID_SUFFIX] = pushToken.description.trimmingCharacters(in: CharacterSet(charactersIn: "<>")).replacingOccurrences(of: " ", with: "")
     }
 }
 

@@ -39,7 +39,7 @@ public class UsergridManager {
         Usergrid.initSharedInstance(configuration: UsergridClientConfig(orgId: UsergridManager.ORG_ID, appId: UsergridManager.APP_ID, baseUrl: UsergridManager.BASE_URL))
     }
 
-    static func applyPushToken(deviceToken:NSData) {
+    static func applyPushToken(_ deviceToken:Data) {
         Usergrid.applyPushToken(deviceToken, notifierID: UsergridManager.NOTIFIER_ID, completion: { (response) -> Void in
             print("Apply token completed successfully : \(response.ok)")
             if !response.ok, let errorDescription = response.error?.errorDescription {
@@ -48,8 +48,8 @@ public class UsergridManager {
         })
     }
 
-    static func sendPush(deviceId deviceId:String,message:String) {
-        let pushRequest = UsergridRequest(method: .Post,
+    static func sendPush(deviceId:String,message:String) {
+        let pushRequest = UsergridRequest(method: .post,
                                           baseUrl: Usergrid.clientAppURL,
                                           paths: ["devices",deviceId,"notifications"],
                                           auth: Usergrid.authForRequests(),

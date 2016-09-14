@@ -50,7 +50,7 @@ class ClientCreationTests: XCTestCase {
     func test_CLIENT_PROPERTIES() {
         XCTAssertEqual(Usergrid.appId, ClientCreationTests.appId)
         XCTAssertEqual(Usergrid.orgId, ClientCreationTests.orgId)
-        XCTAssertEqual(Usergrid.authMode, UsergridAuthMode.User)
+        XCTAssertEqual(Usergrid.authMode, UsergridAuthMode.user)
         XCTAssertEqual(Usergrid.persistCurrentUserInKeychain, false)
         XCTAssertEqual(Usergrid.baseUrl, UsergridClient.DEFAULT_BASE_URL)
         XCTAssertEqual(Usergrid.clientAppURL, "\(UsergridClient.DEFAULT_BASE_URL)/\(ClientCreationTests.orgId)/\(ClientCreationTests.appId)" )
@@ -59,8 +59,8 @@ class ClientCreationTests: XCTestCase {
     }
 
     func test_CLIENT_NSCODING() {
-        let sharedInstanceAsData = NSKeyedArchiver.archivedDataWithRootObject(Usergrid.sharedInstance)
-        let newInstanceFromData = NSKeyedUnarchiver.unarchiveObjectWithData(sharedInstanceAsData) as? UsergridClient
+        let sharedInstanceAsData = NSKeyedArchiver.archivedData(withRootObject: Usergrid.sharedInstance)
+        let newInstanceFromData = NSKeyedUnarchiver.unarchiveObject(with: sharedInstanceAsData) as? UsergridClient
 
         XCTAssertNotNil(newInstanceFromData)
 

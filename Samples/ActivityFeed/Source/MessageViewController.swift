@@ -36,7 +36,7 @@ class MessageViewController : SLKTextViewController {
     private var messageEntities: [ActivityEntity] = []
 
     init() {
-        super.init(tableViewStyle:.Plain)
+        super.init(tableViewStyle:.plain)
         commonInit()
     }
 
@@ -45,11 +45,11 @@ class MessageViewController : SLKTextViewController {
         commonInit()
     }
 
-    override static func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
-        return .Plain
+    override static func tableViewStyle(for decoder: NSCoder) -> UITableViewStyle {
+        return .plain
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.reloadMessages()
         if let username = Usergrid.currentUser?.name {
             self.navigationItem.title = "\(username)'s Feed"
@@ -60,11 +60,11 @@ class MessageViewController : SLKTextViewController {
     func commonInit() {
         self.bounces = true
         self.shakeToClearEnabled = true
-        self.keyboardPanningEnabled = true
+        self.isKeyboardPanningEnabled = true
         self.shouldScrollToBottomAfterKeyboardShows = true
-        self.inverted = true
+        self.isInverted = true
 
-        self.registerClassForTextView(MessageTextView)
+        self.registerClass(forTextView:MessageTextView.classForCoder())
         self.activateWCSession()
     }
 
@@ -78,32 +78,32 @@ class MessageViewController : SLKTextViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.rightButton.setTitle("Send", forState: .Normal)
+        self.rightButton.setTitle("Send", for: [])
 
         self.textInputbar.autoHideRightButton = true
         self.textInputbar.maxCharCount = 256
-        self.textInputbar.editorTitle.textColor = UIColor.darkGrayColor()
+        self.textInputbar.editorTitle.textColor = UIColor.darkGray
 
-        self.tableView!.separatorStyle = .None
-        self.tableView!.registerClass(MessageTableViewCell.self, forCellReuseIdentifier:MessageViewController.MESSAGE_CELL_IDENTIFIER)
+        self.tableView!.separatorStyle = .none
+        self.tableView!.register(MessageTableViewCell.self, forCellReuseIdentifier:MessageViewController.MESSAGE_CELL_IDENTIFIER)
     }
 
-    override func didPressRightButton(sender: AnyObject!) {
+    override func didPressRightButton(_ sender: Any!) {
         self.textView.refreshFirstResponder()
 
         UsergridManager.postFeedMessage(self.textView.text) { (response) -> Void in
             if let messageEntity = response.entity as? ActivityEntity {
-                let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-                let rowAnimation: UITableViewRowAnimation = self.inverted ? .Bottom : .Top
-                let scrollPosition: UITableViewScrollPosition = self.inverted ? .Bottom : .Top
+                let indexPath = NSIndexPath.init(row: 0, section: 0)
+                let rowAnimation: UITableViewRowAnimation = self.isInverted ? .bottom : .top
+                let scrollPosition: UITableViewScrollPosition = self.isInverted ? .bottom : .top
 
                 self.tableView!.beginUpdates()
-                self.messageEntities.insert(messageEntity, atIndex: 0)
-                self.tableView!.insertRowsAtIndexPaths([indexPath], withRowAnimation: rowAnimation)
+                self.messageEntities.insert(messageEntity, at: 0)
+                self.tableView!.insertRows(at: [indexPath as IndexPath], with: rowAnimation)
                 self.tableView!.endUpdates()
 
-                self.tableView!.scrollToRowAtIndexPath(indexPath, atScrollPosition: scrollPosition, animated: true)
-                self.tableView!.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                self.tableView!.scrollToRow(at: indexPath as IndexPath, at: scrollPosition, animated: true)
+                self.tableView!.reloadRows(at: [indexPath as IndexPath], with: .automatic)
 
                 self.sendEntitiesToWatch(self.messageEntities)
             }
@@ -112,35 +112,37 @@ class MessageViewController : SLKTextViewController {
     }
 
     override func keyForTextCaching() -> String? {
-        return NSBundle.mainBundle().bundleIdentifier
+        return Bundle.main.bundleIdentifier
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messageEntities.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return self.messageCellForRowAtIndexPath(indexPath)
     }
 
-    @IBAction func unwindToChat(segue: UIStoryboardSegue) {
+    @IBAction func unwindToChat(_ segue: UIStoryboardSegue) {
 
     }
 
-    func populateCell(cell:MessageTableViewCell,feedEntity:ActivityEntity) {
+    func populateCell(_ cell:MessageTableViewCell,feedEntity:ActivityEntity) {
 
         cell.titleLabel.text = feedEntity.displayName
         cell.bodyLabel.text = feedEntity.content
         cell.thumbnailView.image = nil
 
-        if let imageURLString = feedEntity.imageURL, imageURL = NSURL(string: imageURLString) {
-            NSURLSession.sharedSession().dataTaskWithURL(imageURL) { (data, response, error) in
-                if let imageData = data, image = UIImage(data: imageData) {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        if let imageURLString = feedEntity.imageURL, let imageURL = URL(string: imageURLString) {
+            URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
+                if let imageData = data, let image = UIImage(data: imageData) {
+                    DispatchQueue.main.async(execute: { () -> Void in
                         cell.thumbnailView.image = image
                     })
                 }
@@ -148,8 +150,8 @@ class MessageViewController : SLKTextViewController {
         }
     }
 
-    func messageCellForRowAtIndexPath(indexPath:NSIndexPath) -> MessageTableViewCell {
-        let cell = self.tableView!.dequeueReusableCellWithIdentifier(MessageViewController.MESSAGE_CELL_IDENTIFIER) as! MessageTableViewCell
+    func messageCellForRowAtIndexPath(_ indexPath:IndexPath) -> MessageTableViewCell {
+        let cell = self.tableView!.dequeueReusableCell(withIdentifier: MessageViewController.MESSAGE_CELL_IDENTIFIER) as! MessageTableViewCell
         self.populateCell(cell, feedEntity: self.messageEntities[indexPath.row])
 
         cell.indexPath = indexPath
@@ -158,30 +160,30 @@ class MessageViewController : SLKTextViewController {
         return cell
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        let feedEntity = messageEntities[indexPath.row]
+        let feedEntity = messageEntities[(indexPath as NSIndexPath).row]
 
-        guard let messageText = feedEntity.content where !messageText.isEmpty
+        guard let messageText = feedEntity.content, !messageText.isEmpty
         else {
                 return 0
         }
 
-        let messageUsername : NSString = feedEntity.displayName ?? ""
+        let messageUsername : NSString = (feedEntity.displayName ?? "") as NSString
 
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = .ByWordWrapping
-        paragraphStyle.alignment = .Left
+        paragraphStyle.lineBreakMode = .byWordWrapping
+        paragraphStyle.alignment = .left
 
         let pointSize = MessageTableViewCell.defaultFontSize
-        let attributes = [NSFontAttributeName:UIFont.boldSystemFontOfSize(pointSize),NSParagraphStyleAttributeName:paragraphStyle]
+        let attributes = [NSFontAttributeName:UIFont.boldSystemFont(ofSize: pointSize),NSParagraphStyleAttributeName:paragraphStyle]
 
-        let width: CGFloat = CGRectGetWidth(self.tableView!.frame) - MessageTableViewCell.kMessageTableViewCellAvatarHeight - 25
+        let width: CGFloat = self.tableView!.frame.width - MessageTableViewCell.kMessageTableViewCellAvatarHeight - 25
 
-        let titleBounds = messageUsername.boundingRectWithSize(CGSize(width: width, height: CGFloat.max), options: .UsesLineFragmentOrigin, attributes: attributes, context: nil)
-        let bodyBounds = messageText.boundingRectWithSize(CGSize(width: width, height: CGFloat.max), options: .UsesLineFragmentOrigin, attributes: attributes, context: nil)
+        let titleBounds = messageUsername.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
+        let bodyBounds = messageText.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
 
-        var height = CGRectGetHeight(titleBounds) + CGRectGetHeight(bodyBounds) + 40
+        var height = titleBounds.height + bodyBounds.height + 40
         if height < MessageTableViewCell.kMessageTableViewCellMinimumHeight {
             height = MessageTableViewCell.kMessageTableViewCellMinimumHeight
         }
@@ -194,24 +196,47 @@ extension MessageViewController : WCSessionDelegate {
 
     func activateWCSession() {
         if (WCSession.isSupported()) {
-            let session = WCSession.defaultSession()
+            let session = WCSession.default()
             session.delegate = self
-            session.activateSession()
+            session.activate()
         }
     }
 
-    func sendEntitiesToWatch(messages:[UsergridEntity]) {
-        if WCSession.defaultSession().reachable {
-            NSKeyedArchiver.setClassName("ActivityEntity", forClass: ActivityEntity.self)
-            let data = NSKeyedArchiver.archivedDataWithRootObject(messages)
-            WCSession.defaultSession().sendMessageData(data, replyHandler: nil, errorHandler: { (error) -> Void in
-                self.showAlert(title: "WCSession Unreachable.", message: "\(error)")
+    @available(iOS 9.3, *)
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+
+    }
+
+    func sessionDidBecomeInactive(_ session: WCSession) {
+
+    }
+
+    func sessionDidDeactivate(_ session: WCSession) {
+
+    }
+
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Swift.Void) {
+        if let action = message["action"] as? String, action == "getMessages" {
+            UsergridManager.getFeedMessages { (response) -> Void in
+                if let entities = response.entities {
+                    self.sendEntitiesToWatch(entities)
+                }
+            }
+        }
+    }
+
+    func sendEntitiesToWatch(_ messages:[UsergridEntity]) {
+        if WCSession.default().isReachable {
+            NSKeyedArchiver.setClassName("ActivityEntity", for: ActivityEntity.self)
+            let data = NSKeyedArchiver.archivedData(withRootObject: messages)
+            WCSession.default().sendMessageData(data, replyHandler: nil, errorHandler: { (error) -> Void in
+                self.showAlert("WCSession Unreachable.", message: "\(error)")
             })
         }
     }
 
-    func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
-        if let action = message["action"] as? String where action == "getMessages" {
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let action = message["action"] as? String, action == "getMessages" {
             UsergridManager.getFeedMessages { (response) -> Void in
                 if let entities = response.entities {
                     self.sendEntitiesToWatch(entities)

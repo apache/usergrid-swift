@@ -34,19 +34,23 @@ class InterfaceController: WKInterfaceController,WCSessionDelegate {
     @IBOutlet var messageTable: WKInterfaceTable!
     var messageEntities: [ActivityEntity] = []
 
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         if WCSession.isSupported() {
-            let session = WCSession.defaultSession()
+            let session = WCSession.default()
             session.delegate = self
-            session.activateSession()
+            session.activate()
         }
+    }
+
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+
     }
 
     override func willActivate() {
         self.reloadTable()
-        if WCSession.defaultSession().reachable {
-            WCSession.defaultSession().sendMessage(["action":"getMessages"], replyHandler: nil) { (error) -> Void in
+        if WCSession.default().isReachable {
+            WCSession.default().sendMessage(["action":"getMessages"], replyHandler: nil) { (error) -> Void in
                 print(error)
             }
         }
@@ -56,7 +60,7 @@ class InterfaceController: WKInterfaceController,WCSessionDelegate {
     func reloadTable() {
         self.messageTable.setNumberOfRows(messageEntities.count, withRowType: "MessageRow")
         for index in 0..<self.messageTable.numberOfRows {
-            if let controller = self.messageTable.rowControllerAtIndex(index) as? MessageRowController {
+            if let controller = self.messageTable.rowController(at: index) as? MessageRowController {
                 let messageEntity = messageEntities[index]
                 controller.titleLabel.setText(messageEntity.displayName)
                 controller.messageLabel.setText(messageEntity.content)
@@ -64,9 +68,9 @@ class InterfaceController: WKInterfaceController,WCSessionDelegate {
         }
     }
 
-    func session(session: WCSession, didReceiveMessageData messageData: NSData) {
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
         NSKeyedUnarchiver.setClass(ActivityEntity.self, forClassName: "ActivityEntity")
-        if let messageEntities = NSKeyedUnarchiver.unarchiveObjectWithData(messageData) as? [ActivityEntity] {
+        if let messageEntities = NSKeyedUnarchiver.unarchiveObject(with: messageData) as? [ActivityEntity] {
             self.messageEntities = messageEntities
             self.reloadTable()
         }

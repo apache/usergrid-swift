@@ -25,6 +25,7 @@
  */
 
 import XCTest
+import Foundation
 @testable import UsergridSDK
 
 class ASSET_Tests: XCTestCase {
@@ -46,8 +47,8 @@ class ASSET_Tests: XCTestCase {
         super.tearDown()
     }
 
-    func getFullPathOfFile(fileLocation:String) -> String {
-        return (NSBundle(forClass: object_getClass(self)).resourcePath! as NSString).stringByAppendingPathComponent(fileLocation)
+    func getFullPathOfFile(_ fileLocation:String) -> String {
+        return (Bundle(for: object_getClass(self)).resourcePath!) + "/\(fileLocation)"
     }
 
     func test_ASSET_INIT() {
@@ -57,28 +58,28 @@ class ASSET_Tests: XCTestCase {
         XCTAssertNotNil(asset)
         XCTAssertNotNil(asset!.data)
         XCTAssertNotNil(asset!.filename)
-        XCTAssertEqual(asset!.contentType, UsergridImageContentType.Png.stringValue)
+        XCTAssertEqual(asset!.contentType, UsergridImageContentType.png.stringValue)
         XCTAssertTrue(asset!.contentLength > 0)
 
-        asset = UsergridAsset(filename:ASSET_Tests.imageName, fileURL: NSURL(fileURLWithPath: filePath))
+        asset = UsergridAsset(filename:ASSET_Tests.imageName, fileURL: URL(fileURLWithPath: filePath))
         XCTAssertNotNil(asset)
         XCTAssertNotNil(asset!.data)
         XCTAssertNotNil(asset!.filename)
-        XCTAssertEqual(asset!.contentType, UsergridImageContentType.Png.stringValue)
+        XCTAssertEqual(asset!.contentType, UsergridImageContentType.png.stringValue)
         XCTAssertTrue(asset!.contentLength > 0)
 
         filePath = self.getFullPathOfFile(ASSET_Tests.jpgLocation)
         image = UIImage(contentsOfFile: filePath)
-        asset = UsergridAsset(filename:nil,image: image!, imageContentType:.Jpeg)
+        asset = UsergridAsset(filename:nil,image: image!, imageContentType:.jpeg)
         XCTAssertNotNil(asset)
         XCTAssertNotNil(asset!.data)
         XCTAssertEqual(asset!.filename,UsergridAsset.DEFAULT_FILE_NAME)
-        XCTAssertEqual(asset!.contentType, UsergridImageContentType.Jpeg.stringValue)
+        XCTAssertEqual(asset!.contentType, UsergridImageContentType.jpeg.stringValue)
         XCTAssertTrue(asset!.contentLength > 0)
     }
 
     func test_IMAGE_UPLOAD() {
-        let getExpect = self.expectationWithDescription("\(#function)")
+        let getExpect = self.expectation(description: "\(#function)")
         let uploadProgress : UsergridAssetRequestProgress = { (bytes,expected) in
             print("UPLOAD PROGRESS BLOCK: BYTES:\(bytes) --- EXPECTED:\(expected)")
         }
@@ -87,7 +88,7 @@ class ASSET_Tests: XCTestCase {
         }
 
         Usergrid.GET(ASSET_Tests.collectionName, uuidOrName:ASSET_Tests.entityUUID) { (response) in
-            XCTAssertTrue(NSThread.isMainThread())
+            XCTAssertTrue(Thread.isMainThread)
 
             let entity = response.first!
             XCTAssertNotNil(entity)
@@ -103,7 +104,7 @@ class ASSET_Tests: XCTestCase {
             XCTAssertNotNil(asset)
 
             entity.uploadAsset(asset!, progress:uploadProgress) { uploadedAsset,response in
-                XCTAssertTrue(NSThread.isMainThread())
+                XCTAssertTrue(Thread.isMainThread)
                 XCTAssertTrue(response.ok)
                 XCTAssertNil(response.error)
 
@@ -120,9 +121,9 @@ class ASSET_Tests: XCTestCase {
                 XCTAssertEqual(entity.asset!.contentLength, entity.fileMetaData!.contentLength)
                 XCTAssertEqual(entity.asset!.contentType, entity.fileMetaData!.contentType)
 
-                entity.downloadAsset(UsergridImageContentType.Png.stringValue, progress:downloadProgress)
+                entity.downloadAsset(UsergridImageContentType.png.stringValue, progress:downloadProgress)
                 { (downloadedAsset, error) -> Void in
-                    XCTAssertTrue(NSThread.isMainThread())
+                    XCTAssertTrue(Thread.isMainThread)
                     XCTAssertNotNil(downloadedAsset)
                     XCTAssertNil(error)
                     let downloadedImage = UIImage(data: downloadedAsset!.data)
@@ -132,12 +133,12 @@ class ASSET_Tests: XCTestCase {
                 }
             }
         }
-        self.waitForExpectationsWithTimeout(100, handler: nil)
+        self.waitForExpectations(timeout: 100, handler: nil)
     }
 
-    func deleteUser(user:UsergridUser,expectation:XCTestExpectation) {
+    func deleteUser(_ user:UsergridUser,expectation:XCTestExpectation) {
         user.remove() { removeResponse in
-            XCTAssertTrue(NSThread.isMainThread())
+            XCTAssertTrue(Thread.isMainThread)
             XCTAssertNotNil(removeResponse)
             XCTAssertTrue(removeResponse.ok)
             XCTAssertNotNil(removeResponse.user)
@@ -148,7 +149,7 @@ class ASSET_Tests: XCTestCase {
     }
 
     func test_ATTACH_ASSET_TO_CURRENT_USER() {
-        let userAssetExpect = self.expectationWithDescription("\(#function)")
+        let userAssetExpect = self.expectation(description: "\(#function)")
 
         let user = UsergridUser(name:User_Tests.name, email:User_Tests.email, username:User_Tests.username, password:User_Tests.password)
         let uploadProgress : UsergridAssetRequestProgress = { (bytes,expected) in
@@ -160,12 +161,12 @@ class ASSET_Tests: XCTestCase {
 
         UsergridUser.checkAvailable(user.email, username: user.username) { error,available in
 
-            XCTAssertTrue(NSThread.isMainThread())
+            XCTAssertTrue(Thread.isMainThread)
             XCTAssertNil(error)
             XCTAssertTrue(available)
 
             user.create() { (createResponse) in
-                XCTAssertTrue(NSThread.isMainThread())
+                XCTAssertTrue(Thread.isMainThread)
                 XCTAssertNotNil(createResponse)
                 XCTAssertTrue(createResponse.ok)
                 XCTAssertNotNil(createResponse.user)
@@ -173,14 +174,14 @@ class ASSET_Tests: XCTestCase {
                 XCTAssertNotNil(user.uuid)
 
                 user.login(user.username!, password:User_Tests.password) { (auth, loggedInUser, error) -> Void in
-                    XCTAssertTrue(NSThread.isMainThread())
+                    XCTAssertTrue(Thread.isMainThread)
                     XCTAssertNil(error)
                     XCTAssertNotNil(auth)
                     XCTAssertNotNil(loggedInUser)
                     XCTAssertEqual(auth, user.auth!)
 
                     Usergrid.authenticateUser(user.auth!) { auth,currentUser,error in
-                        XCTAssertTrue(NSThread.isMainThread())
+                        XCTAssertTrue(Thread.isMainThread)
                         XCTAssertNil(error)
                         XCTAssertNotNil(auth)
                         XCTAssertEqual(auth, user.auth!)
@@ -199,7 +200,7 @@ class ASSET_Tests: XCTestCase {
                         XCTAssertNotNil(asset)
 
                         Usergrid.currentUser!.uploadAsset(asset!, progress:uploadProgress) { uploadedAsset,response in
-                            XCTAssertTrue(NSThread.isMainThread())
+                            XCTAssertTrue(Thread.isMainThread)
                             XCTAssertTrue(response.ok)
                             XCTAssertNil(response.error)
 
@@ -216,9 +217,9 @@ class ASSET_Tests: XCTestCase {
                             XCTAssertEqual(Usergrid.currentUser!.asset!.contentLength, Usergrid.currentUser!.fileMetaData!.contentLength)
                             XCTAssertEqual(Usergrid.currentUser!.asset!.contentType, Usergrid.currentUser!.fileMetaData!.contentType)
 
-                            Usergrid.currentUser!.downloadAsset(UsergridImageContentType.Png.stringValue, progress:downloadProgress)
+                            Usergrid.currentUser!.downloadAsset(UsergridImageContentType.png.stringValue, progress:downloadProgress)
                                 { (downloadedAsset, error) -> Void in
-                                    XCTAssertTrue(NSThread.isMainThread())
+                                    XCTAssertTrue(Thread.isMainThread)
                                     XCTAssertNotNil(downloadedAsset)
                                     XCTAssertNil(error)
                                     let downloadedImage = UIImage(data: downloadedAsset!.data)
@@ -231,7 +232,7 @@ class ASSET_Tests: XCTestCase {
                 }
             }
         }
-        self.waitForExpectationsWithTimeout(100, handler: nil)
+        self.waitForExpectations(timeout: 100, handler: nil)
     }
 
 
@@ -240,12 +241,12 @@ class ASSET_Tests: XCTestCase {
                                 "etag":"dfa7421ea4f35d33e12ba93979a46b7e",
                                 "checkSum":"dfa7421ea4f35d33e12ba93979a46b7e",
                                 "content-length":1417896,
-                                "last-modified":1455728898545]
+                                "last-modified":1455728898545] as [String : Any]
         
         let fileMetaData = UsergridFileMetaData(fileMetaDataJSON:fileMetaDataDict)
 
-        let fileMetaDataCodingData = NSKeyedArchiver.archivedDataWithRootObject(fileMetaData)
-        let newInstanceFromData = NSKeyedUnarchiver.unarchiveObjectWithData(fileMetaDataCodingData) as? UsergridFileMetaData
+        let fileMetaDataCodingData = NSKeyedArchiver.archivedData(withRootObject: fileMetaData)
+        let newInstanceFromData = NSKeyedUnarchiver.unarchiveObject(with: fileMetaDataCodingData) as? UsergridFileMetaData
         XCTAssertNotNil(newInstanceFromData)
 
         if let newInstance = newInstanceFromData {
@@ -259,12 +260,12 @@ class ASSET_Tests: XCTestCase {
 
     func test_ASSET_NSCODING() {
         let imagePath = self.getFullPathOfFile(ASSET_Tests.pngLocation)
-        let asset = UsergridAsset(filename:ASSET_Tests.imageName,fileURL: NSURL(fileURLWithPath: imagePath))
+        let asset = UsergridAsset(filename:ASSET_Tests.imageName,fileURL: URL(fileURLWithPath: imagePath))
         XCTAssertNotNil(asset)
 
         if let originalAsset = asset {
-            let assetCodingData = NSKeyedArchiver.archivedDataWithRootObject(originalAsset)
-            let newInstanceFromData = NSKeyedUnarchiver.unarchiveObjectWithData(assetCodingData) as? UsergridAsset
+            let assetCodingData = NSKeyedArchiver.archivedData(withRootObject: originalAsset)
+            let newInstanceFromData = NSKeyedUnarchiver.unarchiveObject(with: assetCodingData) as? UsergridAsset
 
             XCTAssertNotNil(newInstanceFromData)
 

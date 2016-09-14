@@ -27,10 +27,10 @@
 import UIKit
 
 extension UIViewController {
-    func showAlert(title title: String, message: String?, handler:((UIAlertAction) -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: handler))
-        self.presentViewController(alert, animated: true, completion: nil)
+    func showAlert(_ title: String, message: String?, handler:((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: handler))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

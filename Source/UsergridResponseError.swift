@@ -74,9 +74,9 @@ public class UsergridResponseError: NSObject {
 
      - returns: A new instance of `UsergridResponseError` if the JSON dictionary did indeed contain error information.
      */
-    public convenience init?(jsonDictionary:[String:AnyObject]) {
+    public convenience init?(jsonDictionary:[String:Any]) {
         if let errorName = jsonDictionary[USERGRID_ERROR] as? String,
-               errorDescription = jsonDictionary[USERGRID_ERROR_DESCRIPTION] as? String {
+               let errorDescription = jsonDictionary[USERGRID_ERROR_DESCRIPTION] as? String {
             self.init(errorName:errorName,errorDescription:errorDescription,exception:jsonDictionary[USERGRID_EXCEPTION] as? String)
         } else {
             self.init(errorName:"",errorDescription:"")

@@ -27,10 +27,10 @@
 import Foundation
 
 /// The completion block used for checking email and/or username availablity for new `UsergridUser` objects.
-public typealias UsergridUserAvailabilityCompletion = (error: UsergridResponseError?, available:Bool) -> Void
+public typealias UsergridUserAvailabilityCompletion = (_ error: UsergridResponseError?, _ available:Bool) -> Void
 
 /// The completion block used for changing the password of `UsergridUser` objects.
-public typealias UsergridUserResetPasswordCompletion = (error: UsergridResponseError?, didSucceed:Bool) -> Void
+public typealias UsergridUserResetPasswordCompletion = (_ error: UsergridResponseError?, _ didSucceed:Bool) -> Void
 
 /**
 `UsergridUser` is a special subclass of `UsergridEntity` that supports functions and properties unique to users.
@@ -50,32 +50,32 @@ public class UsergridUser : UsergridEntity {
     Unlike `UsergridEntity` objects, `UsergridUser`'s can change their name property which is why we provide a getter here.
     */
     override public var name: String? {
-        set(name) { self[UsergridUserProperties.Name.stringValue] = name }
+        set(name) { self[UsergridUserProperties.name.stringValue] = name }
         get{ return super.name }
     }
 
     /// Property getter and setter helpers for the `UsergridUser` objects `UsergridUserProperties.Username`.
     public var username: String? {
-        set(username) { self[UsergridUserProperties.Username.stringValue] = username }
-        get { return self.getUserSpecificProperty(.Username) as? String }
+        set(username) { self[UsergridUserProperties.username.stringValue] = username }
+        get { return self.getUserSpecificProperty(.username) as? String }
     }
 
     /// Property getter and setter helpers for the `UsergridUser` objects `UsergridUserProperties.Password`.
     public var password: String? {
-        set(password) { self[UsergridUserProperties.Password.stringValue] = password }
-        get { return self.getUserSpecificProperty(.Password) as? String }
+        set(password) { self[UsergridUserProperties.password.stringValue] = password }
+        get { return self.getUserSpecificProperty(.password) as? String }
     }
 
     /// Property getter and setter helpers for the `UsergridUser` objects `UsergridUserProperties.Email`.
     public var email: String? {
-        set(email) { self[UsergridUserProperties.Email.stringValue] = email }
-        get { return self.getUserSpecificProperty(.Email) as? String }
+        set(email) { self[UsergridUserProperties.email.stringValue] = email }
+        get { return self.getUserSpecificProperty(.email) as? String }
     }
 
     /// Property getter and setter helpers for the `UsergridUser` objects `UsergridUserProperties.Age`.
     public var age: NSNumber? {
-        set(age) { self[UsergridUserProperties.Age.stringValue] = age }
-        get { return self.getUserSpecificProperty(.Age) as? NSNumber }
+        set(age) { self[UsergridUserProperties.age.stringValue] = age }
+        get { return self.getUserSpecificProperty(.age) as? NSNumber }
     }
 
     /// Property helper method to get the username or email of the `UsergridUser`.
@@ -87,14 +87,14 @@ public class UsergridUser : UsergridEntity {
     Indicates whether the user account has been activated or not.
     */
     public var activated: Bool {
-        set(activated) { self[UsergridUserProperties.Activated.stringValue] = activated }
-        get { return self.getUserSpecificProperty(.Activated) as? Bool ?? false }
+        set(activated) { self[UsergridUserProperties.activated.stringValue] = activated }
+        get { return self.getUserSpecificProperty(.activated) as? Bool ?? false }
     }
 
     /// Property getter and setter helpers for the `UsergridUser` objects `UsergridUserProperties.Disabled`.
     public var disabled: Bool {
-        set(disabled) { self[UsergridUserProperties.Disabled.stringValue] = disabled }
-        get { return self.getUserSpecificProperty(.Disabled) as? Bool ?? false }
+        set(disabled) { self[UsergridUserProperties.disabled.stringValue] = disabled }
+        get { return self.getUserSpecificProperty(.disabled) as? Bool ?? false }
     }
 
     /**
@@ -103,8 +103,8 @@ public class UsergridUser : UsergridEntity {
     URL path to user’s profile picture. Defaults to Gravatar for email address.
     */
     public var picture: String? {
-        set(picture) { self[UsergridUserProperties.Picture.stringValue] = picture }
-        get { return self.getUserSpecificProperty(.Picture) as? String }
+        set(picture) { self[UsergridUserProperties.picture.stringValue] = picture }
+        get { return self.getUserSpecificProperty(.picture) as? String }
     }
 
     /// The UUID or username property value if found.
@@ -132,7 +132,7 @@ public class UsergridUser : UsergridEntity {
 
      - returns: A new `UsergridUser` object.
      */
-    required public init(type: String, name: String?, propertyDict: [String : AnyObject]?) {
+    required public init(type: String, name: String?, propertyDict: [String : Any]?) {
         super.init(type: type, name: name, propertyDict: propertyDict)
     }
 
@@ -144,7 +144,7 @@ public class UsergridUser : UsergridEntity {
 
     - returns: A new instance of `UsergridUser`.
     */
-    public init(name:String,propertyDict:[String:AnyObject]? = nil) {
+    public init(name:String,propertyDict:[String:Any]? = nil) {
         super.init(type: UsergridUser.USER_ENTITY_TYPE, name:name, propertyDict:propertyDict)
     }
 
@@ -225,7 +225,7 @@ public class UsergridUser : UsergridEntity {
     - returns: A decoded `UsergridUser` object.
     */
     required public init?(coder aDecoder: NSCoder) {
-        self.auth = aDecoder.decodeObjectForKey("auth") as? UsergridUserAuth
+        self.auth = aDecoder.decodeObject(forKey: "auth") as? UsergridUserAuth
         super.init(coder: aDecoder)
     }
 
@@ -234,9 +234,9 @@ public class UsergridUser : UsergridEntity {
 
      - parameter aCoder: The encoder.
      */
-    public override func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.auth, forKey: "auth")
-        super.encodeWithCoder(aCoder)
+    public override func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.auth, forKey: "auth")
+        super.encode(with: aCoder)
     }
 
     // MARK: - Class Methods -
@@ -248,7 +248,7 @@ public class UsergridUser : UsergridEntity {
     - parameter username:   The optional username.
     - parameter completion: The completion block.
     */
-    public static func checkAvailable(email:String?, username:String?, completion:UsergridUserAvailabilityCompletion) {
+    public static func checkAvailable(_ email:String?, username:String?, completion:UsergridUserAvailabilityCompletion) {
         self.checkAvailable(Usergrid.sharedInstance, email: email, username: username, completion: completion)
     }
 
@@ -260,16 +260,16 @@ public class UsergridUser : UsergridEntity {
      - parameter username:   The optional username.
      - parameter completion: The completion block.
      */
-    public static func checkAvailable(client: UsergridClient, email:String?, username:String?, completion:UsergridUserAvailabilityCompletion) {
+    public static func checkAvailable(_ client: UsergridClient, email:String?, username:String?, completion:UsergridUserAvailabilityCompletion) {
         let query = UsergridQuery(USER_ENTITY_TYPE)
         if let emailValue = email {
-            query.eq(UsergridUserProperties.Email.stringValue, value: emailValue)
+            query.eq(UsergridUserProperties.email.stringValue, value: emailValue)
         }
         if let usernameValue = username {
-            query.or().eq(UsergridUserProperties.Username.stringValue, value: usernameValue)
+            query.or().eq(UsergridUserProperties.username.stringValue, value: usernameValue)
         }
         client.GET(query) { (response) -> Void in
-            completion(error: response.error, available: response.entity == nil)
+            completion(response.error, response.entity == nil)
         }
     }
 
@@ -280,7 +280,7 @@ public class UsergridUser : UsergridEntity {
 
     - parameter completion: The optional completion block.
     */
-    public func create(completion: UsergridResponseCompletion? = nil) {
+    public func create(_ completion: UsergridResponseCompletion? = nil) {
         self.create(Usergrid.sharedInstance, completion: completion)
     }
 
@@ -290,12 +290,12 @@ public class UsergridUser : UsergridEntity {
     - parameter client:     The client to use for creation.
     - parameter completion: The optional completion block.
     */
-    public func create(client: UsergridClient, completion: UsergridResponseCompletion? = nil) {
+    public func create(_ client: UsergridClient, completion: UsergridResponseCompletion? = nil) {
         client.POST(self) { (response) -> Void in
             if response.ok, let createdUser = response.user {
                 self.copyInternalsFromEntity(createdUser)
             }
-            completion?(response: response)
+            completion?(response)
         }
     }
 
@@ -308,7 +308,7 @@ public class UsergridUser : UsergridEntity {
     - parameter password:   The password.
     - parameter completion: The optional completion block.
     */
-    public func login(username:String, password:String, completion: UsergridUserAuthCompletionBlock? = nil) {
+    public func login(_ username:String, password:String, completion: UsergridUserAuthCompletionBlock? = nil) {
         self.login(Usergrid.sharedInstance, username: username, password: password, completion: completion)
     }
 
@@ -322,11 +322,11 @@ public class UsergridUser : UsergridEntity {
     - parameter password:   The password.
     - parameter completion: The optional completion block.
     */
-    public func login(client: UsergridClient, username:String, password:String, completion: UsergridUserAuthCompletionBlock? = nil) {
+    public func login(_ client: UsergridClient, username:String, password:String, completion: UsergridUserAuthCompletionBlock? = nil) {
         let userAuth = UsergridUserAuth(username: username, password: password)
         client.authenticateUser(userAuth,setAsCurrentUser:false) { (auth, user, error) -> Void in
             self.auth = userAuth
-            completion?(auth: userAuth, user: user, error: error)
+            completion?(userAuth, user, error)
         }
     }
 
@@ -337,7 +337,7 @@ public class UsergridUser : UsergridEntity {
      - parameter new:        The new password.
      - parameter completion: The optional completion block.
      */
-    public func resetPassword(old:String, new:String, completion:UsergridUserResetPasswordCompletion? = nil) {
+    public func resetPassword(_ old:String, new:String, completion:UsergridUserResetPasswordCompletion? = nil) {
         self.resetPassword(Usergrid.sharedInstance, old: old, new: new, completion: completion)
     }
 
@@ -349,7 +349,7 @@ public class UsergridUser : UsergridEntity {
      - parameter new:        The new password.
      - parameter completion: The optional completion block
      */
-    public func resetPassword(client: UsergridClient, old:String, new:String, completion:UsergridUserResetPasswordCompletion? = nil) {
+    public func resetPassword(_ client: UsergridClient, old:String, new:String, completion:UsergridUserResetPasswordCompletion? = nil) {
         client.resetPassword(self, old: old, new: new, completion: completion)
     }
 
@@ -358,7 +358,7 @@ public class UsergridUser : UsergridEntity {
 
      - parameter completion: The optional completion block.
      */
-    public func reauthenticate(completion: UsergridUserAuthCompletionBlock? = nil) {
+    public func reauthenticate(_ completion: UsergridUserAuthCompletionBlock? = nil) {
         self.reauthenticate(Usergrid.sharedInstance, completion: completion)
     }
 
@@ -368,10 +368,10 @@ public class UsergridUser : UsergridEntity {
      - parameter client:     The client to use for reauthentication.
      - parameter completion: The optional completion block.
      */
-    public func reauthenticate(client: UsergridClient, completion: UsergridUserAuthCompletionBlock? = nil) {
+    public func reauthenticate(_ client: UsergridClient, completion: UsergridUserAuthCompletionBlock? = nil) {
         guard let userAuth = self.auth
             else {
-                completion?(auth: nil, user: self, error: UsergridResponseError(errorName: "Invalid UsergridUserAuth.", errorDescription: "No UsergridUserAuth found on the UsergridUser."))
+                completion?(nil, self, UsergridResponseError(errorName: "Invalid UsergridUserAuth.", errorDescription: "No UsergridUserAuth found on the UsergridUser."))
                 return
         }
 
@@ -383,7 +383,7 @@ public class UsergridUser : UsergridEntity {
 
     - parameter completion: The optional completion block.
     */
-    public func logout(completion:UsergridResponseCompletion? = nil) {
+    public func logout(_ completion:UsergridResponseCompletion? = nil) {
         self.logout(Usergrid.sharedInstance,completion:completion)
     }
 
@@ -393,17 +393,17 @@ public class UsergridUser : UsergridEntity {
     - parameter client:     The client to use for logout.
     - parameter completion: The optional completion block.
     */
-    public func logout(client: UsergridClient, completion:UsergridResponseCompletion? = nil) {
+    public func logout(_ client: UsergridClient, completion:UsergridResponseCompletion? = nil) {
         guard let uuidOrUsername = self.uuidOrUsername,
               let accessToken = self.auth?.accessToken
             else {
-                completion?(response: UsergridResponse(client:client, errorName:"Logout Failed.", errorDescription:"UUID or Access Token not found on UsergridUser object."))
+                completion?(UsergridResponse(client:client, errorName:"Logout Failed.", errorDescription:"UUID or Access Token not found on UsergridUser object."))
                 return
         }
         
         client.logoutUser(uuidOrUsername, token: accessToken) { (response) in
             self.auth = nil
-            completion?(response: response)
+            completion?(response)
         }
     }
 
@@ -413,7 +413,7 @@ public class UsergridUser : UsergridEntity {
      - parameter device:     The device to connect to.  If nil it will use the `UsergridDevice.sharedDevice` instance.
      - parameter completion: The optional completion block.
      */
-    public func connectToDevice(device:UsergridDevice? = nil, completion:UsergridResponseCompletion? = nil) {
+    public func connectToDevice(_ device:UsergridDevice? = nil, completion:UsergridResponseCompletion? = nil) {
         self.connectToDevice(Usergrid.sharedInstance, device: device, completion: completion)
     }
 
@@ -424,11 +424,11 @@ public class UsergridUser : UsergridEntity {
      - parameter device:     The device to connect to.  If nil it will use the `UsergridDevice.sharedDevice` instance.
      - parameter completion: The optional completion block.
      */
-    public func connectToDevice(client:UsergridClient, device:UsergridDevice? = nil, completion:UsergridResponseCompletion? = nil) {
+    public func connectToDevice(_ client:UsergridClient, device:UsergridDevice? = nil, completion:UsergridResponseCompletion? = nil) {
         let deviceToConnect = device ?? UsergridDevice.sharedDevice
         guard let _ = deviceToConnect.uuidOrName
             else {
-            completion?(response: UsergridResponse(client: client, errorName: "Device cannot be connected to User.", errorDescription: "Device has neither an UUID or name specified."))
+            completion?(UsergridResponse(client: client, errorName: "Device cannot be connected to User.", errorDescription: "Device has neither an UUID or name specified."))
             return
         }
 
@@ -440,7 +440,7 @@ public class UsergridUser : UsergridEntity {
 
      - parameter completion: The optional completion block.
      */
-    public func getConnectedDevice(completion:UsergridResponseCompletion? = nil) {
+    public func getConnectedDevice(_ completion:UsergridResponseCompletion? = nil) {
         self.getConnectedDevice(Usergrid.sharedInstance, completion: completion)
     }
 
@@ -450,8 +450,8 @@ public class UsergridUser : UsergridEntity {
      - parameter client:     The `UsergridClient` object to use for connecting.
      - parameter completion: The optional completion block.
      */
-    public func getConnectedDevice(client:UsergridClient, completion:UsergridResponseCompletion? = nil) {
-        client.getConnections(.Out, entity: self, relationship: "device", completion: completion)
+    public func getConnectedDevice(_ client:UsergridClient, completion:UsergridResponseCompletion? = nil) {
+        client.getConnections(.out, entity: self, relationship: "device", completion: completion)
     }
 
     /**
@@ -460,7 +460,7 @@ public class UsergridUser : UsergridEntity {
      - parameter device:     The device to connect to.  If nil it will use the `UsergridDevice.sharedDevice` instance.
      - parameter completion: The optional completion block.
      */
-    public func disconnectFromDevice(device:UsergridDevice? = nil, completion:UsergridResponseCompletion? = nil) {
+    public func disconnectFromDevice(_ device:UsergridDevice? = nil, completion:UsergridResponseCompletion? = nil) {
         self.disconnectFromDevice(Usergrid.sharedInstance, device: device, completion: completion)
     }
 
@@ -471,26 +471,25 @@ public class UsergridUser : UsergridEntity {
      - parameter device:     The device to connect to.
      - parameter completion: The optional completion block.
      */
-    public func disconnectFromDevice(client:UsergridClient, device:UsergridDevice? = nil, completion:UsergridResponseCompletion? = nil) {
+    public func disconnectFromDevice(_ client:UsergridClient, device:UsergridDevice? = nil, completion:UsergridResponseCompletion? = nil) {
         let deviceToDisconnectFrom = device ?? UsergridDevice.sharedDevice
         guard let _ = deviceToDisconnectFrom.uuidOrName
             else {
-                completion?(response: UsergridResponse(client: client, errorName: "Device cannot be disconnected from User.", errorDescription: "Device has neither an UUID or name specified."))
+                completion?(UsergridResponse(client: client, errorName: "Device cannot be disconnected from User.", errorDescription: "Device has neither an UUID or name specified."))
                 return
         }
 
         self.disconnect(client, relationship: "", fromEntity: deviceToDisconnectFrom, completion: completion)
     }
 
-    private func getUserSpecificProperty(userProperty: UsergridUserProperties) -> AnyObject? {
-        var propertyValue: AnyObject? = super[userProperty.stringValue]
-        NSJSONReadingOptions.AllowFragments
+    private func getUserSpecificProperty(_ userProperty: UsergridUserProperties) -> Any? {
+        var propertyValue: Any? = super[userProperty.stringValue]
         switch userProperty {
-            case .Activated,.Disabled :
-                propertyValue = propertyValue?.boolValue
-            case .Age :
-                propertyValue = propertyValue?.integerValue
-            case .Name,.Username,.Password,.Email,.Picture :
+            case .activated,.disabled :
+                propertyValue = (propertyValue as AnyObject) as? Bool ?? false
+            case .age :
+                propertyValue = (propertyValue as AnyObject) as? Int ?? 0 // TODO: Check these conversions
+            case .name,.username,.password,.email,.picture :
                 break
         }
         return propertyValue
@@ -508,7 +507,7 @@ public class UsergridUser : UsergridEntity {
     usergridUser["name"] = someName
     ```
     */
-    override public subscript(propertyName: String) -> AnyObject? {
+    override public subscript(propertyName: String) -> Any? {
         get {
             if let userProperty = UsergridUserProperties.fromString(propertyName) {
                 return self.getUserSpecificProperty(userProperty)

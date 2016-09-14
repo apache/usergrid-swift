@@ -201,6 +201,7 @@
 				TargetAttributes = {
 					637A71EF1C5BF7B10056545A = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -428,6 +429,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.usergridpushsample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -443,6 +445,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.usergrid.usergridpushsample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -45,7 +45,7 @@ public class UsergridClientConfig : NSObject, NSCoding {
     public var baseUrl: String = UsergridClient.DEFAULT_BASE_URL
 
     /// The `UsergridAuthMode` value used to determine what type of token will be sent, if any.
-    public var authMode: UsergridAuthMode = .User
+    public var authMode: UsergridAuthMode = .user
 
     /// Whether or not the `UsergridClient` current user will be saved and restored from the keychain.
     public var persistCurrentUserInKeychain: Bool = true
@@ -115,9 +115,9 @@ public class UsergridClientConfig : NSObject, NSCoding {
     - returns: A decoded `UsergridUser` object.
     */
     public required init?(coder aDecoder: NSCoder) {
-        guard   let appId = aDecoder.decodeObjectForKey("appId") as? String,
-                let orgId = aDecoder.decodeObjectForKey("orgId") as? String,
-                let baseUrl = aDecoder.decodeObjectForKey("baseUrl") as? String
+        guard   let appId = aDecoder.decodeObject(forKey: "appId") as? String,
+                let orgId = aDecoder.decodeObject(forKey: "orgId") as? String,
+                let baseUrl = aDecoder.decodeObject(forKey: "baseUrl") as? String
         else {
             self.appId = ""
             self.orgId = ""
@@ -127,9 +127,9 @@ public class UsergridClientConfig : NSObject, NSCoding {
         self.appId = appId
         self.orgId = orgId
         self.baseUrl = baseUrl
-        self.appAuth = aDecoder.decodeObjectForKey("appAuth") as? UsergridAppAuth
-        self.persistCurrentUserInKeychain = aDecoder.decodeBoolForKey("persistCurrentUserInKeychain") ?? true
-        self.authMode = UsergridAuthMode(rawValue:aDecoder.decodeIntegerForKey("authMode")) ?? .None
+        self.appAuth = aDecoder.decodeObject(forKey: "appAuth") as? UsergridAppAuth
+        self.persistCurrentUserInKeychain = aDecoder.decodeBool(forKey: "persistCurrentUserInKeychain")
+        self.authMode = (UsergridAuthMode(rawValue:aDecoder.decodeInteger(forKey: "authMode")) ?? .none)!
         super.init()
     }
 
@@ -138,12 +138,12 @@ public class UsergridClientConfig : NSObject, NSCoding {
 
      - parameter aCoder: The encoder.
      */
-    public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.appId, forKey: "appId")
-        aCoder.encodeObject(self.orgId, forKey: "orgId")
-        aCoder.encodeObject(self.baseUrl, forKey: "baseUrl")
-        aCoder.encodeObject(self.appAuth, forKey: "appAuth")
-        aCoder.encodeBool(self.persistCurrentUserInKeychain, forKey: "persistCurrentUserInKeychain")
-        aCoder.encodeInteger(self.authMode.rawValue, forKey: "authMode")
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.appId, forKey: "appId")
+        aCoder.encode(self.orgId, forKey: "orgId")
+        aCoder.encode(self.baseUrl, forKey: "baseUrl")
+        aCoder.encode(self.appAuth, forKey: "appAuth")
+        aCoder.encode(self.persistCurrentUserInKeychain, forKey: "persistCurrentUserInKeychain")
+        aCoder.encode(self.authMode.rawValue, forKey: "authMode")
     }
 }

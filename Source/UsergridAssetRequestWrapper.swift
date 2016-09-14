@@ -26,20 +26,20 @@
 
 import Foundation
 
-typealias UsergridAssetRequestWrapperCompletionBlock = (requestWrapper:UsergridAssetRequestWrapper) -> Void
+typealias UsergridAssetRequestWrapperCompletionBlock = (_ requestWrapper:UsergridAssetRequestWrapper) -> Void
 
 final class UsergridAssetRequestWrapper {
-    weak var session: NSURLSession?
-    let sessionTask: NSURLSessionTask
+    weak var session: URLSession?
+    let sessionTask: URLSessionTask
 
-    var response: NSURLResponse?
-    var responseData: NSData?
+    var response: URLResponse?
+    var responseData: Data?
     var error: NSError?
 
     var progress: UsergridAssetRequestProgress?
     let completion: UsergridAssetRequestWrapperCompletionBlock
 
-    init(session:NSURLSession?, sessionTask:NSURLSessionTask, progress:UsergridAssetRequestProgress?, completion:UsergridAssetRequestWrapperCompletionBlock) {
+    init(session:URLSession?, sessionTask:URLSessionTask, progress:UsergridAssetRequestProgress?, completion:UsergridAssetRequestWrapperCompletionBlock) {
         self.session = session
         self.sessionTask = sessionTask
         self.progress = progress

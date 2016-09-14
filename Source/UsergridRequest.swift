@@ -54,7 +54,7 @@ public class UsergridRequest : NSObject {
     public let headers: [String:String]?
 
     /// The JSON body that will be set on the request.  Can be either a valid JSON object or NSData.
-    public let jsonBody: AnyObject?
+    public let jsonBody: Any?
     
     /// The query params that will be set on the request.
     public let queryParams: [String:String]?
@@ -81,7 +81,7 @@ public class UsergridRequest : NSObject {
         query:UsergridQuery? = nil,
         auth:UsergridAuth? = nil,
         headers:[String:String]? = nil,
-        jsonBody:AnyObject? = nil,
+        jsonBody:Any? = nil,
         queryParams:[String:String]? = nil) {
             self.method = method
             self.baseUrl = baseUrl
@@ -90,7 +90,7 @@ public class UsergridRequest : NSObject {
             self.headers = headers
             self.query = query
             self.queryParams = queryParams
-            if let body = jsonBody where (body is NSData || NSJSONSerialization.isValidJSONObject(body)) {
+            if let body = jsonBody , (body is Data || JSONSerialization.isValidJSONObject(body)) {
                 self.jsonBody = body
             } else {
                 self.jsonBody = nil
@@ -104,20 +104,20 @@ public class UsergridRequest : NSObject {
 
     - returns: An initialized and configured `NSURLRequest` object.
     */
-    public func buildNSURLRequest() -> NSURLRequest {
-        let request = NSMutableURLRequest(URL: self.buildURL())
-        request.HTTPMethod = self.method.stringValue
+    public func buildNSURLRequest() -> URLRequest {
+        let request = NSMutableURLRequest(url: self.buildURL())
+        request.httpMethod = self.method.stringValue
         self.applyHeaders(request)
         self.applyBody(request)
         self.applyAuth(request)
-        return request
+        return request as URLRequest
     }
 
-    private func buildURL() -> NSURL {
+    private func buildURL() -> URL {
         var constructedURLString = self.baseUrl
         if let appendingPaths = self.paths {
             for pathToAppend in appendingPaths {
-                if let encodedPath = pathToAppend.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet()) {
+                if let encodedPath = pathToAppend.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed) {
                     constructedURLString = "\(constructedURLString)\(UsergridRequest.FORWARD_SLASH)\(encodedPath)"
                 }
             }
@@ -129,19 +129,19 @@ public class UsergridRequest : NSObject {
             }
         }
         if let queryParams = self.queryParams {
-            if let components = NSURLComponents(string: constructedURLString) {
+            if var components = URLComponents(string: constructedURLString) {
                 components.queryItems = components.queryItems ?? []
                 for (key, value) in queryParams {
-                    let q: NSURLQueryItem = NSURLQueryItem(name: key, value: value)
+                    let q: URLQueryItem = URLQueryItem(name: key, value: value)
                     components.queryItems!.append(q)
                 }
                 constructedURLString = components.string!
             }
         }
-        return NSURL(string:constructedURLString)!
+        return URL(string:constructedURLString)!
     }
 
-    private func applyHeaders(request:NSMutableURLRequest) {
+    fileprivate func applyHeaders(_ request:NSMutableURLRequest) {
         if let httpHeaders = self.headers {
             for (key,value) in httpHeaders {
                 request.setValue(value, forHTTPHeaderField: key)
@@ -149,14 +149,14 @@ public class UsergridRequest : NSObject {
         }
     }
 
-    private func applyBody(request:NSMutableURLRequest) {
-        if let jsonBody = self.jsonBody, httpBody = UsergridRequest.jsonBodyToData(jsonBody) {
-            request.HTTPBody = httpBody
-            request.setValue(String(format: "%lu", httpBody.length), forHTTPHeaderField: UsergridRequest.CONTENT_LENGTH)
+    private func applyBody(_ request:NSMutableURLRequest) {
+        if let jsonBody = self.jsonBody, let httpBody = UsergridRequest.jsonBodyToData(jsonBody) {
+            request.httpBody = httpBody
+            request.setValue(String(format: "%lu", httpBody.count), forHTTPHeaderField: UsergridRequest.CONTENT_LENGTH)
         }
     }
 
-    private func applyAuth(request:NSMutableURLRequest) {
+    private func applyAuth(_ request:NSMutableURLRequest) {
         if let usergridAuth = self.auth {
             if usergridAuth.isValid, let accessToken = usergridAuth.accessToken {
                 request.setValue("\(UsergridRequest.BEARER) \(accessToken)", forHTTPHeaderField: UsergridRequest.AUTHORIZATION)
@@ -164,26 +164,28 @@ public class UsergridRequest : NSObject {
         }
     }
 
-    private static func jsonBodyToData(jsonBody:AnyObject) -> NSData? {
-        if let jsonBodyAsNSData = jsonBody as? NSData {
+    private static func jsonBodyToData(_ jsonBody:Any) -> Data? {
+        if let jsonBodyAsNSData = jsonBody as? Data {
             return jsonBodyAsNSData
         } else {
-            var jsonBodyAsNSData: NSData? = nil
-            do { jsonBodyAsNSData = try NSJSONSerialization.dataWithJSONObject(jsonBody, options: NSJSONWritingOptions(rawValue: 0)) }
+            var jsonBodyAsNSData: Data? = nil
+            do { jsonBodyAsNSData = try JSONSerialization.data(withJSONObject: jsonBody, options: JSONSerialization.WritingOptions(rawValue: 0)) }
             catch { print(error) }
             return jsonBodyAsNSData
         }
     }
 
-    private static let AUTHORIZATION = "Authorization"
-    private static let ACCESS_TOKEN = "access_token"
-    private static let APPLICATION_JSON = "application/json; charset=utf-8"
-    private static let BEARER = "Bearer"
-    private static let CONTENT_LENGTH = "Content-Length"
-    private static let CONTENT_TYPE = "Content-Type"
-    private static let FORWARD_SLASH = "/"
+    fileprivate static let AUTHORIZATION = "Authorization"
+    fileprivate static let ACCESS_TOKEN = "access_token"
+    fileprivate static let APPLICATION_JSON = "application/json; charset=utf-8"
+    fileprivate static let BEARER = "Bearer"
+    fileprivate static let CONTENT_LENGTH = "Content-Length"
+    fileprivate static let CONTENT_TYPE = "Content-Type"
+    fileprivate static let FORWARD_SLASH = "/"
 
-    static let JSON_CONTENT_TYPE_HEADER = [UsergridRequest.CONTENT_TYPE:UsergridRequest.APPLICATION_JSON]
+    static func jsonHeaderContentType() -> [String:String] {
+        return [UsergridRequest.CONTENT_TYPE:UsergridRequest.APPLICATION_JSON]
+    }
 }
 
 /**
@@ -197,15 +199,16 @@ public class UsergridAssetUploadRequest: UsergridRequest {
     public let asset: UsergridAsset
 
     /// A constructed multipart http body for requests to upload.
-    public var multiPartHTTPBody: NSData {
+    public var multiPartHTTPBody: Data {
         let httpBodyString = UsergridAssetUploadRequest.MULTIPART_START +
             "\(UsergridAssetUploadRequest.CONTENT_DISPOSITION):\(UsergridAssetUploadRequest.FORM_DATA); name=file; filename=\(self.asset.filename)\r\n" +
-            "\(UsergridRequest.CONTENT_TYPE): \(self.asset.contentType)\r\n\r\n" as NSString
+            "\(UsergridRequest.CONTENT_TYPE): \(self.asset.contentType)\r\n\r\n"
 
-        let httpBody = NSMutableData()
-        httpBody.appendData(httpBodyString.dataUsingEncoding(NSUTF8StringEncoding)!)
-        httpBody.appendData(self.asset.data)
-        httpBody.appendData(UsergridAssetUploadRequest.MULTIPART_END.dataUsingEncoding(NSUTF8StringEncoding)!)
+
+        var httpBody = Data()
+        httpBody.append(httpBodyString.data(using: String.Encoding.utf8)!)
+        httpBody.append(self.asset.data)
+        httpBody.append(UsergridAssetUploadRequest.MULTIPART_END.data(using: String.Encoding.utf8)!)
 
         return httpBody
     }
@@ -227,19 +230,19 @@ public class UsergridAssetUploadRequest: UsergridRequest {
                 auth:UsergridAuth? = nil,
                 asset:UsergridAsset) {
                     self.asset = asset
-                    super.init(method: .Put, baseUrl: baseUrl, paths: paths, auth: auth)
+                    super.init(method: .put, baseUrl: baseUrl, paths: paths, auth: auth)
     }
 
-    private override func applyHeaders(request: NSMutableURLRequest) {
+    fileprivate override func applyHeaders(_ request: NSMutableURLRequest) {
         super.applyHeaders(request)
         request.setValue(UsergridAssetUploadRequest.ASSET_UPLOAD_CONTENT_HEADER, forHTTPHeaderField: UsergridRequest.CONTENT_TYPE)
-        request.setValue(String(format: "%lu", self.multiPartHTTPBody.length), forHTTPHeaderField: UsergridRequest.CONTENT_LENGTH)
+        request.setValue(String(format: "%lu", self.multiPartHTTPBody.count), forHTTPHeaderField: UsergridRequest.CONTENT_LENGTH)
     }
 
     private static let ASSET_UPLOAD_BOUNDARY = "usergrid-asset-upload-boundary"
     private static let ASSET_UPLOAD_CONTENT_HEADER = "multipart/form-data; boundary=\(UsergridAssetUploadRequest.ASSET_UPLOAD_BOUNDARY)"
     private static let CONTENT_DISPOSITION = "Content-Disposition"
     private static let MULTIPART_START = "--\(UsergridAssetUploadRequest.ASSET_UPLOAD_BOUNDARY)\r\n"
-    private static let MULTIPART_END = "\r\n--\(UsergridAssetUploadRequest.ASSET_UPLOAD_BOUNDARY)--\r\n" as NSString
+    private static let MULTIPART_END = "\r\n--\(UsergridAssetUploadRequest.ASSET_UPLOAD_BOUNDARY)--\r\n"
     private static let FORM_DATA = "form-data"
 }

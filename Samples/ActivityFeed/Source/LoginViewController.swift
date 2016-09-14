@@ -33,45 +33,45 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.passwordTextField.text = nil
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         Usergrid.logoutCurrentUser()
         super.viewDidAppear(animated)
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.endEditing(true)
     }
 
-    @IBAction func loginButtonTouched(sender: AnyObject) {
-        guard let username = usernameTextField.text where !username.isEmpty,
-              let password = passwordTextField.text where !password.isEmpty
+    @IBAction func loginButtonTouched(_ sender: AnyObject) {
+        guard let username = usernameTextField.text, !username.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty
         else {
-            self.showAlert(title: "Error Authenticating User", message: "Username and password must not be empty.")
+            self.showAlert("Error Authenticating User", message: "Username and password must not be empty.")
             return;
         }
 
         self.loginUser(username, password: password)
     }
 
-    func loginUser(username:String, password:String) {
+    func loginUser(_ username:String, password:String) {
         UsergridManager.loginUser(username,password: password) { (auth, user, error) -> Void in
             if let authErrorDescription = error {
-                self.showAlert(title: "Error Authenticating User", message: authErrorDescription.errorDescription)
+                self.showAlert("Error Authenticating User", message: authErrorDescription.errorDescription)
             } else if let authenticatedUser = user {
-                self.showAlert(title: "Authenticated User Successful", message: "User description: \n \(authenticatedUser.stringValue)") { (action) -> Void in
-                    self.performSegueWithIdentifier("loginSuccessSegue", sender: self)
+                self.showAlert("Authenticated User Successful", message: "User description: \n \(authenticatedUser.stringValue)") { (action) -> Void in
+                    self.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
                 }
             }
         }
     }
 
-    @IBAction func unwind(segue: UIStoryboardSegue) {
+    @IBAction func unwind(_ segue: UIStoryboardSegue) {
         // Used for unwind segues back to this view controller.
     }
 }

@@ -28,63 +28,63 @@ import Foundation
 
 final class UsergridSessionDelegate: NSObject {
 
-    private var requestDelegates: [Int:UsergridAssetRequestWrapper] = [:]
+    fileprivate var requestDelegates: [Int:UsergridAssetRequestWrapper] = [:]
 
-    func addRequestDelegate(task:NSURLSessionTask,requestWrapper:UsergridAssetRequestWrapper) {
+    func addRequestDelegate(_ task:URLSessionTask,requestWrapper:UsergridAssetRequestWrapper) {
         requestDelegates[task.taskIdentifier] = requestWrapper
     }
 
-    func removeRequestDelegate(task:NSURLSessionTask) {
+    func removeRequestDelegate(_ task:URLSessionTask) {
         requestDelegates[task.taskIdentifier] = nil
     }
 }
 
-extension UsergridSessionDelegate : NSURLSessionTaskDelegate {
+extension UsergridSessionDelegate : URLSessionTaskDelegate {
 
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         if let progressBlock = requestDelegates[task.taskIdentifier]?.progress {
-            progressBlock(bytesFinished:totalBytesSent, bytesExpected: totalBytesExpectedToSend)
+            progressBlock(totalBytesSent, totalBytesExpectedToSend)
         }
     }
 
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let requestWrapper = requestDelegates[task.taskIdentifier] {
-            requestWrapper.error = error
-            requestWrapper.completion(requestWrapper: requestWrapper)
+            requestWrapper.error = error as? NSError // WTF
+            requestWrapper.completion(requestWrapper)
         }
         self.removeRequestDelegate(task)
     }
 }
 
-extension UsergridSessionDelegate : NSURLSessionDataDelegate {
+extension UsergridSessionDelegate : URLSessionDataDelegate {
 
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Swift.Void) {
         if let requestWrapper = requestDelegates[dataTask.taskIdentifier] {
             requestWrapper.response = response
         }
-        completionHandler(NSURLSessionResponseDisposition.Allow)
+        completionHandler(Foundation.URLSession.ResponseDisposition.allow)
     }
 
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         if let requestWrapper = requestDelegates[dataTask.taskIdentifier] {
-            let mutableData = requestWrapper.responseData != nil ? NSMutableData(data: requestWrapper.responseData!) : NSMutableData()
-            mutableData.appendData(data)
+            var mutableData = requestWrapper.responseData != nil ? (NSMutableData(data: requestWrapper.responseData!) as Data) : Data()
+            mutableData.append(data)
             requestWrapper.responseData = mutableData
         }
     }
 }
 
-extension UsergridSessionDelegate : NSURLSessionDownloadDelegate {
+extension UsergridSessionDelegate : URLSessionDownloadDelegate {
 
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         if let progressBlock = requestDelegates[downloadTask.taskIdentifier]?.progress {
-            progressBlock(bytesFinished:totalBytesWritten, bytesExpected: totalBytesExpectedToWrite)
+            progressBlock(totalBytesWritten, totalBytesExpectedToWrite)
         }
     }
 
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         if let requestWrapper = requestDelegates[downloadTask.taskIdentifier] {
-            requestWrapper.responseData = NSData(contentsOfURL: location)!
+            requestWrapper.responseData = try! Data(contentsOf: location)
         }
     }
 }

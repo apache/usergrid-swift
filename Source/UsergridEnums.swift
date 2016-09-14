@@ -36,21 +36,21 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     /**
     If the API call fails, the activity is treated as a failure with an appropriate HTTP status code.
     */
-    case None
+    case none
 
     /**
      If a non-expired `UsergridUserAuth` exists in `UsergridClient.currentUser`, this token is used to authenticate all API calls.
 
      If the API call fails, the activity is treated as a failure with an appropriate HTTP status code (This behavior is identical to authMode=.None).
      */
-    case User
+    case user
 
     /**
     If a non-expired `UsergridAppAuth` exists in `UsergridClient.appAuth`, this token is used to authenticate all API calls.
 
     If the API call fails, the activity is treated as a failure with an appropriate HTTP status code (This behavior is identical to authMode=.None).
     */
-    case App
+    case app
 }
 
 /**
@@ -61,17 +61,17 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     // MARK: - Values -
 
     /// Corresponds to the property 'type'
-    case EntityType
+    case type
     /// Corresponds to the property 'uuid'
-    case UUID
+    case uuid
     /// Corresponds to the property 'name'
-    case Name
+    case name
     /// Corresponds to the property 'created'
-    case Created
+    case created
     /// Corresponds to the property 'modified'
-    case Modified
+    case modified
     /// Corresponds to the property 'location'
-    case Location
+    case location
 
     // MARK: - Methods -
 
@@ -82,14 +82,14 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
 
     - returns: The corresponding `UsergridEntityProperties` or nil.
     */
-    public static func fromString(stringValue: String) -> UsergridEntityProperties? {
-        switch stringValue.lowercaseString {
-            case ENTITY_TYPE: return .EntityType
-            case ENTITY_UUID: return .UUID
-            case ENTITY_NAME: return .Name
-            case ENTITY_CREATED: return .Created
-            case ENTITY_MODIFIED: return .Modified
-            case ENTITY_LOCATION: return .Location
+    public static func fromString(_ stringValue: String) -> UsergridEntityProperties? {
+        switch stringValue.lowercased() {
+            case ENTITY_TYPE: return .type
+            case ENTITY_UUID: return .uuid
+            case ENTITY_NAME: return .name
+            case ENTITY_CREATED: return .created
+            case ENTITY_MODIFIED: return .modified
+            case ENTITY_LOCATION: return .location
             default: return nil
         }
     }
@@ -97,12 +97,12 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     /// Returns the string value.
     public var stringValue: String {
         switch self {
-            case .EntityType: return ENTITY_TYPE
-            case .UUID: return ENTITY_UUID
-            case .Name: return ENTITY_NAME
-            case .Created: return ENTITY_CREATED
-            case .Modified: return ENTITY_MODIFIED
-            case .Location: return ENTITY_LOCATION
+            case .type: return ENTITY_TYPE
+            case .uuid: return ENTITY_UUID
+            case .name: return ENTITY_NAME
+            case .created: return ENTITY_CREATED
+            case .modified: return ENTITY_MODIFIED
+            case .location: return ENTITY_LOCATION
         }
     }
 
@@ -113,11 +113,11 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
 
     - returns: If the `UsergridEntityProperties` is mutable for the given entity
     */
-    public func isMutableForEntity(entity:UsergridEntity) -> Bool {
+    public func isMutableForEntity(_ entity:UsergridEntity) -> Bool {
         switch self {
-            case .EntityType,.UUID,.Created,.Modified: return false
-            case .Location: return true
-            case .Name: return entity.isUser
+            case .type,.uuid,.created,.modified: return false
+            case .location: return true
+            case .name: return entity.isUser
         }
     }
 }
@@ -130,11 +130,11 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     // MARK: - Values -
 
     /// Corresponds to the property 'deviceModel'
-    case Model
+    case model
     /// Corresponds to the property 'devicePlatform'
-    case Platform
+    case platform
     /// Corresponds to the property 'deviceOSVersion'
-    case OSVersion
+    case osVersion
 
     // MARK: - Methods -
 
@@ -145,11 +145,11 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
 
     - returns: The corresponding `UsergridDeviceProperties` or nil.
     */
-    public static func fromString(stringValue: String) -> UsergridDeviceProperties? {
-        switch stringValue.lowercaseString {
-            case DEVICE_MODEL: return .Model
-            case DEVICE_PLATFORM: return .Platform
-            case DEVICE_OSVERSION: return .OSVersion
+    public static func fromString(_ stringValue: String) -> UsergridDeviceProperties? {
+        switch stringValue.lowercased() {
+            case DEVICE_MODEL: return .model
+            case DEVICE_PLATFORM: return .platform
+            case DEVICE_OSVERSION: return .osVersion
             default: return nil
         }
     }
@@ -157,9 +157,9 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     /// Returns the string value.
     public var stringValue: String {
         switch self {
-            case .Model: return DEVICE_MODEL
-            case .Platform: return DEVICE_PLATFORM
-            case .OSVersion: return DEVICE_OSVERSION
+            case .model: return DEVICE_MODEL
+            case .platform: return DEVICE_PLATFORM
+            case .osVersion: return DEVICE_OSVERSION
         }
     }
 }
@@ -172,21 +172,21 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     // MARK: - Values -
 
     /// Corresponds to the property 'name'
-    case Name
+    case name
     /// Corresponds to the property 'username'
-    case Username
+    case username
     /// Corresponds to the property 'password'
-    case Password
+    case password
     /// Corresponds to the property 'email'
-    case Email
+    case email
     /// Corresponds to the property 'age'
-    case Age
+    case age
     /// Corresponds to the property 'activated'
-    case Activated
+    case activated
     /// Corresponds to the property 'disabled'
-    case Disabled
+    case disabled
     /// Corresponds to the property 'picture'
-    case Picture
+    case picture
 
     // MARK: - Methods -
 
@@ -197,16 +197,16 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
 
     - returns: The corresponding `UsergridUserProperties` or nil.
     */
-    public static func fromString(stringValue: String) -> UsergridUserProperties? {
-        switch stringValue.lowercaseString {
-            case ENTITY_NAME: return .Name
-            case USER_USERNAME: return .Username
-            case USER_PASSWORD: return .Password
-            case USER_EMAIL: return .Email
-            case USER_AGE: return .Age
-            case USER_ACTIVATED: return .Activated
-            case USER_DISABLED: return .Disabled
-            case USER_PICTURE: return .Picture
+    public static func fromString(_ stringValue: String) -> UsergridUserProperties? {
+        switch stringValue.lowercased() {
+            case ENTITY_NAME: return .name
+            case USER_USERNAME: return .username
+            case USER_PASSWORD: return .password
+            case USER_EMAIL: return .email
+            case USER_AGE: return .age
+            case USER_ACTIVATED: return .activated
+            case USER_DISABLED: return .disabled
+            case USER_PICTURE: return .picture
             default: return nil
         }
     }
@@ -214,14 +214,14 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     /// Returns the string value.
     public var stringValue: String {
         switch self {
-            case .Name: return ENTITY_NAME
-            case .Username: return USER_USERNAME
-            case .Password: return USER_PASSWORD
-            case .Email: return USER_EMAIL
-            case .Age: return USER_AGE
-            case .Activated: return USER_ACTIVATED
-            case .Disabled: return USER_DISABLED
-            case .Picture: return USER_PICTURE
+            case .name: return ENTITY_NAME
+            case .username: return USER_USERNAME
+            case .password: return USER_PASSWORD
+            case .email: return USER_EMAIL
+            case .age: return USER_AGE
+            case .activated: return USER_ACTIVATED
+            case .disabled: return USER_DISABLED
+            case .picture: return USER_PICTURE
         }
     }
 }
@@ -234,15 +234,15 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     // MARK: - Values -
 
     /// '='
-    case Equal
+    case equal
     /// '>'
-    case GreaterThan
+    case greaterThan
     /// '>='
-    case GreaterThanEqualTo
+    case greaterThanEqualTo
     /// '<'
-    case LessThan
+    case lessThan
     /// '<='
-    case LessThanEqualTo
+    case lessThanEqualTo
 
     // MARK: - Methods -
 
@@ -253,13 +253,13 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
 
     - returns: The corresponding `UsergridQueryOperator` or nil.
     */
-    public static func fromString(stringValue: String) -> UsergridQueryOperator? {
-        switch stringValue.lowercaseString {
-            case UsergridQuery.EQUAL: return .Equal
-            case UsergridQuery.GREATER_THAN: return .GreaterThan
-            case UsergridQuery.GREATER_THAN_EQUAL_TO: return .GreaterThanEqualTo
-            case UsergridQuery.LESS_THAN: return .LessThan
-            case UsergridQuery.LESS_THAN_EQUAL_TO: return .LessThanEqualTo
+    public static func fromString(_ stringValue: String) -> UsergridQueryOperator? {
+        switch stringValue.lowercased() {
+            case UsergridQuery.EQUAL: return .equal
+            case UsergridQuery.GREATER_THAN: return .greaterThan
+            case UsergridQuery.GREATER_THAN_EQUAL_TO: return .greaterThanEqualTo
+            case UsergridQuery.LESS_THAN: return .lessThan
+            case UsergridQuery.LESS_THAN_EQUAL_TO: return .lessThanEqualTo
             default: return nil
         }
     }
@@ -267,11 +267,11 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     /// Returns the string value.
     public var stringValue: String {
         switch self {
-            case .Equal: return UsergridQuery.EQUAL
-            case .GreaterThan: return UsergridQuery.GREATER_THAN
-            case .GreaterThanEqualTo: return UsergridQuery.GREATER_THAN_EQUAL_TO
-            case .LessThan: return UsergridQuery.LESS_THAN
-            case .LessThanEqualTo: return UsergridQuery.LESS_THAN_EQUAL_TO
+            case .equal: return UsergridQuery.EQUAL
+            case .greaterThan: return UsergridQuery.GREATER_THAN
+            case .greaterThanEqualTo: return UsergridQuery.GREATER_THAN_EQUAL_TO
+            case .lessThan: return UsergridQuery.LESS_THAN
+            case .lessThanEqualTo: return UsergridQuery.LESS_THAN_EQUAL_TO
         }
     }
 }
@@ -284,9 +284,9 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     // MARK: - Values -
 
     /// Sort order is ascending.
-    case Asc
+    case asc
     /// Sort order is descending.
-    case Desc
+    case desc
 
     // MARK: - Methods -
 
@@ -297,10 +297,10 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
 
     - returns: The corresponding `UsergridQuerySortOrder` or nil.
     */
-    public static func fromString(stringValue: String) -> UsergridQuerySortOrder? {
-        switch stringValue.lowercaseString {
-            case UsergridQuery.ASC: return .Asc
-            case UsergridQuery.DESC: return .Desc
+    public static func fromString(_ stringValue: String) -> UsergridQuerySortOrder? {
+        switch stringValue.lowercased() {
+            case UsergridQuery.ASC: return .asc
+            case UsergridQuery.DESC: return .desc
             default: return nil
         }
     }
@@ -308,8 +308,8 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     /// Returns the string value.
     public var stringValue: String {
         switch self {
-            case .Asc: return UsergridQuery.ASC
-            case .Desc: return UsergridQuery.DESC
+            case .asc: return UsergridQuery.ASC
+            case .desc: return UsergridQuery.DESC
         }
     }
 }
@@ -322,17 +322,17 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     // MARK: - Values -
 
     /// Content type: 'image/png'
-    case Png
+    case png
     /// Content type: 'image/jpeg'
-    case Jpeg
+    case jpeg
 
     // MARK: - Methods -
 
     /// Returns the string value.
     public var stringValue: String {
         switch self {
-            case .Png: return ASSET_IMAGE_PNG
-            case .Jpeg: return ASSET_IMAGE_JPEG
+            case .png: return ASSET_IMAGE_PNG
+            case .jpeg: return ASSET_IMAGE_JPEG
         }
     }
 }
@@ -345,18 +345,18 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
     // MARK: - Values -
 
     /// To get the entities that have created a connection to an entity. aka `connecting`
-    case In
+    case `in`
 
     /// To get the entities an entity has connected to. aka `connections`
-    case Out
+    case out
 
     // MARK: - Methods -
 
     /// Returns the connection value.
     public var connectionValue: String {
         switch self {
-            case .In: return CONNECTION_TYPE_IN
-            case .Out: return CONNECTION_TYPE_OUT
+            case .in: return CONNECTION_TYPE_IN
+            case .out: return CONNECTION_TYPE_OUT
         }
     }
 }
@@ -367,24 +367,24 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
 @objc public enum UsergridHttpMethod : Int {
 
     /// GET
-    case Get
+    case get
 
     /// PUT
-    case Put
+    case put
 
     /// POST
-    case Post
+    case post
 
     /// DELETE
-    case Delete
+    case delete
 
     /// Returns the string value.
     public var stringValue: String {
         switch self {
-            case .Get: return "GET"
-            case .Put: return "PUT"
-            case .Post: return "POST"
-            case .Delete: return "DELETE"
+            case .get: return "GET"
+            case .put: return "PUT"
+            case .post: return "POST"
+            case .delete: return "DELETE"
         }
     }
 }

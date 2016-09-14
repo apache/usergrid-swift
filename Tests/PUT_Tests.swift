@@ -51,10 +51,10 @@ class PUT_Tests: XCTestCase {
 
         let propertyNameToUpdate = "\(#function)"
         let propertiesNewValue = "\(propertyNameToUpdate)_VALUE"
-        let putExpect = self.expectationWithDescription(propertyNameToUpdate)
+        let putExpect = self.expectation(description: propertyNameToUpdate)
 
         Usergrid.PUT(PUT_Tests.collectionName, uuidOrName: PUT_Tests.entityUUID, jsonBody:[propertyNameToUpdate : propertiesNewValue]) { (response) in
-            XCTAssertTrue(NSThread.isMainThread())
+            XCTAssertTrue(Thread.isMainThread)
             XCTAssertNotNil(response)
             XCTAssertTrue(response.ok)
             XCTAssertEqual(response.entities!.count, 1)
@@ -68,19 +68,19 @@ class PUT_Tests: XCTestCase {
             XCTAssertEqual(updatedPropertyValue!,propertiesNewValue)
             putExpect.fulfill()
         }
-        self.waitForExpectationsWithTimeout(10, handler: nil)
+        self.waitForExpectations(timeout: 10, handler: nil)
     }
 
     func test_PUT_BY_SPECIFYING_UUID_WITHIN_JSON_BODY() {
 
         let propertyNameToUpdate = "\(#function)"
         let propertiesNewValue = "\(propertyNameToUpdate)_VALUE"
-        let putExpect = self.expectationWithDescription(propertyNameToUpdate)
+        let putExpect = self.expectation(description: propertyNameToUpdate)
 
-        let jsonDictToPut = [UsergridEntityProperties.UUID.stringValue : PUT_Tests.entityUUID, propertyNameToUpdate : propertiesNewValue]
+        let jsonDictToPut = [UsergridEntityProperties.uuid.stringValue : PUT_Tests.entityUUID, propertyNameToUpdate : propertiesNewValue]
 
         Usergrid.PUT(PUT_Tests.collectionName, jsonBody: jsonDictToPut) { (response) in
-            XCTAssertTrue(NSThread.isMainThread())
+            XCTAssertTrue(Thread.isMainThread)
             XCTAssertNotNil(response)
             XCTAssertTrue(response.ok)
             XCTAssertEqual(response.entities!.count, 1)
@@ -94,16 +94,16 @@ class PUT_Tests: XCTestCase {
             XCTAssertEqual(updatedPropertyValue!,propertiesNewValue)
             putExpect.fulfill()
         }
-        self.waitForExpectationsWithTimeout(10, handler: nil)
+        self.waitForExpectations(timeout: 10, handler: nil)
     }
 
     func test_PUT_WITH_ENTITY_OBJECT() {
         let propertyNameToUpdate = "\(#function)"
         let propertiesNewValue = "\(propertyNameToUpdate)_VALUE"
-        let putExpect = self.expectationWithDescription(propertyNameToUpdate)
+        let putExpect = self.expectation(description: propertyNameToUpdate)
 
         Usergrid.GET(PUT_Tests.collectionName, uuidOrName: PUT_Tests.entityUUID) { (getResponse) in
-            XCTAssertTrue(NSThread.isMainThread())
+            XCTAssertTrue(Thread.isMainThread)
             XCTAssertNotNil(getResponse)
             XCTAssertTrue(getResponse.ok)
             XCTAssertEqual(getResponse.entities!.count, 1)
@@ -116,7 +116,7 @@ class PUT_Tests: XCTestCase {
             responseEntity[propertyNameToUpdate] = propertiesNewValue
 
             Usergrid.PUT(responseEntity) { (putResponse) in
-                XCTAssertTrue(NSThread.isMainThread())
+                XCTAssertTrue(Thread.isMainThread)
                 XCTAssertNotNil(putResponse)
                 XCTAssertTrue(putResponse.ok)
                 XCTAssertEqual(putResponse.entities!.count, 1)
@@ -131,16 +131,16 @@ class PUT_Tests: XCTestCase {
                 putExpect.fulfill()
             }
         }
-        self.waitForExpectationsWithTimeout(20, handler: nil)
+        self.waitForExpectations(timeout: 20, handler: nil)
     }
 
     func test_PUT_WITH_QUERY() {
         let propertyNameToUpdate = "\(#function)"
         let propertiesNewValue = "\(propertyNameToUpdate)_VALUE"
-        let putExpect = self.expectationWithDescription(propertyNameToUpdate)
+        let putExpect = self.expectation(description: propertyNameToUpdate)
 
         Usergrid.PUT(self.query, jsonBody: [propertyNameToUpdate : propertiesNewValue]) { (putResponse) in
-            XCTAssertTrue(NSThread.isMainThread())
+            XCTAssertTrue(Thread.isMainThread)
             XCTAssertNotNil(putResponse)
             XCTAssertTrue(putResponse.ok)
             XCTAssertEqual(putResponse.entities!.count, 1)
@@ -153,6 +153,6 @@ class PUT_Tests: XCTestCase {
             XCTAssertEqual(updatedPropertyValue!,propertiesNewValue)
             putExpect.fulfill()
         }
-        self.waitForExpectationsWithTimeout(10, handler: nil)
+        self.waitForExpectations(timeout: 10, handler: nil)
     }
 }

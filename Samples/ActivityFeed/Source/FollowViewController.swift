@@ -32,18 +32,18 @@ class FollowViewController : UIViewController {
 
     @IBOutlet weak var usernameTextField: UITextField!
 
-    @IBAction func addFollowerButtonTouched(sender:AnyObject?) {
-        guard let username = usernameTextField.text where !username.isEmpty
+    @IBAction func addFollowerButtonTouched(_ sender:AnyObject?) {
+        guard let username = usernameTextField.text, !username.isEmpty
         else {
-            self.showAlert(title: "Follow failed.", message: "Please enter a valid username.")
+            self.showAlert("Follow failed.", message: "Please enter a valid username.")
             return
         }
 
         UsergridManager.followUser(username) { (response) -> Void in
             if response.ok {
-                self.performSegueWithIdentifier("unwindToChatSegue", sender: self)
+                self.performSegue(withIdentifier: "unwindToChatSegue", sender: self)
             } else {
-                self.showAlert(title: "Follow failed.", message: "No user with the username \"\(username)\" found.")
+                self.showAlert("Follow failed.", message: "No user with the username \"\(username)\" found.")
             }
         }
     }

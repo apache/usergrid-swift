@@ -32,8 +32,8 @@ class AUTH_Tests: XCTestCase {
     var appAuth: UsergridAppAuth!
     var userAuth: UsergridUserAuth!
 
-    private static let collectionName = "publicevent"
-    private static let entityUUID = "fa015eaa-fe1c-11e3-b94b-63b29addea01"
+    fileprivate static let collectionName = "publicevent"
+    fileprivate static let entityUUID = "fa015eaa-fe1c-11e3-b94b-63b29addea01"
 
     override func setUp() {
         super.setUp()
@@ -49,10 +49,10 @@ class AUTH_Tests: XCTestCase {
 
     func test_CLIENT_AUTH() {
 
-        let authExpect = self.expectationWithDescription("\(#function)")
-        Usergrid.authMode = .App
+        let authExpect = self.expectation(description: "\(#function)")
+        Usergrid.authMode = .app
         Usergrid.authenticateApp(appAuth) { auth,error in
-            XCTAssertTrue(NSThread.isMainThread())
+            XCTAssertTrue(Thread.isMainThread)
             XCTAssertNil(error)
             XCTAssertNotNil(Usergrid.appAuth)
 
@@ -63,7 +63,7 @@ class AUTH_Tests: XCTestCase {
                 XCTAssertNotNil(appAuth.isValid)
 
                 Usergrid.GET(AUTH_Tests.collectionName) { (response) in
-                    XCTAssertTrue(NSThread.isMainThread())
+                    XCTAssertTrue(Thread.isMainThread)
                     XCTAssertNotNil(response)
                     XCTAssertTrue(response.hasNextPage)
                     XCTAssertEqual(response.entities!.count, 10)
@@ -73,7 +73,7 @@ class AUTH_Tests: XCTestCase {
                 }
             }
         }
-        self.waitForExpectationsWithTimeout(100, handler: nil)
+        self.waitForExpectations(timeout: 100, handler: nil)
     }
 
     func test_DESTROY_AUTH() {
@@ -93,10 +93,10 @@ class AUTH_Tests: XCTestCase {
     func test_APP_AUTH_NSCODING() {
 
         appAuth.accessToken = "YWMt91Q2YtWaEeW_Ki2uDueMEwAAAVMUTVSPeOdX-oradxdqirEFz5cPU3GWybs"
-        appAuth.expiry = NSDate.distantFuture()
+        appAuth.expiry = Date.distantFuture
 
-        let authCodingData = NSKeyedArchiver.archivedDataWithRootObject(appAuth)
-        let newInstanceFromData = NSKeyedUnarchiver.unarchiveObjectWithData(authCodingData) as? UsergridAppAuth
+        let authCodingData = NSKeyedArchiver.archivedData(withRootObject: appAuth)
+        let newInstanceFromData = NSKeyedUnarchiver.unarchiveObject(with: authCodingData) as? UsergridAppAuth
 
         XCTAssertNotNil(newInstanceFromData)
 
@@ -112,10 +112,10 @@ class AUTH_Tests: XCTestCase {
     func test_USER_AUTH_NSCODING() {
 
         userAuth.accessToken = "YWMt91Q2YtWaEeW_Ki2uDueMEwAAAVMUTVSPeOdX-oradxdqirEFz5cPU3GWybs"
-        userAuth.expiry = NSDate.distantFuture()
+        userAuth.expiry = Date.distantFuture
 
-        let authCodingData = NSKeyedArchiver.archivedDataWithRootObject(userAuth)
-        let newInstanceFromData = NSKeyedUnarchiver.unarchiveObjectWithData(authCodingData) as? UsergridUserAuth
+        let authCodingData = NSKeyedArchiver.archivedData(withRootObject: userAuth)
+        let newInstanceFromData = NSKeyedUnarchiver.unarchiveObject(with: authCodingData) as? UsergridUserAuth
 
         XCTAssertNotNil(newInstanceFromData)
 

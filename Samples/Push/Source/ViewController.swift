@@ -28,11 +28,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBAction func pushToThisDevice(sender: AnyObject) {
+    @IBAction func pushToThisDevice(_ sender: AnyObject) {
         UsergridManager.pushToThisDevice()
     }
 
-    @IBAction func pushToAllDevices(sender: AnyObject) {
+    @IBAction func pushToAllDevices(_ sender: AnyObject) {
         UsergridManager.pushToAllDevices()
     }
 }
