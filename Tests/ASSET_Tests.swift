@@ -240,9 +240,9 @@ class ASSET_Tests: XCTestCase {
                                 "etag":"dfa7421ea4f35d33e12ba93979a46b7e",
                                 "checkSum":"dfa7421ea4f35d33e12ba93979a46b7e",
                                 "content-length":1417896,
-                                "last-modified":1455728898545]
+                                "last-modified":Int(NSDate().timeIntervalSince1970 * Double(1000))]
         
-        let fileMetaData = UsergridFileMetaData(fileMetaDataJSON:fileMetaDataDict)
+        let fileMetaData = UsergridFileMetaData(fileMetaDataJSON:fileMetaDataDict as! [String : AnyObject])
 
         let fileMetaDataCodingData = NSKeyedArchiver.archivedDataWithRootObject(fileMetaData)
         let newInstanceFromData = NSKeyedUnarchiver.unarchiveObjectWithData(fileMetaDataCodingData) as? UsergridFileMetaData
