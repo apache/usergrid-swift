@@ -27,7 +27,7 @@
 import Foundation
 
 /// The version number for the Usergrid Swift SDK.
-public let UsergridSDKVersion = "2.1.2"
+public let UsergridSDKVersion = "2.1.3"
 
 /**
  The `Usergrid` class acts as a static shared instance manager for the `UsergridClient` class.
