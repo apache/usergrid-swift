@@ -162,7 +162,9 @@ public class UsergridClient: NSObject, NSCoding {
                 self.currentUser = UsergridUser.getCurrentUserFromKeychain(self)
             }
         }
-        UsergridDevice.sharedDevice.save(self)
+        DispatchQueue.global().async {
+            UsergridDevice.sharedDevice.save(self)
+        }
     }
 
     /**
