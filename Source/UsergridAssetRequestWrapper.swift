@@ -39,7 +39,7 @@ final class UsergridAssetRequestWrapper {
     var progress: UsergridAssetRequestProgress?
     let completion: UsergridAssetRequestWrapperCompletionBlock
 
-    init(session:URLSession?, sessionTask:URLSessionTask, progress:UsergridAssetRequestProgress?, completion:UsergridAssetRequestWrapperCompletionBlock) {
+    init(session:URLSession?, sessionTask:URLSessionTask, progress:UsergridAssetRequestProgress?, completion:@escaping UsergridAssetRequestWrapperCompletionBlock) {
         self.session = session
         self.sessionTask = sessionTask
         self.progress = progress

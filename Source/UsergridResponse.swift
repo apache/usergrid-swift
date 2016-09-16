@@ -186,7 +186,7 @@ public class UsergridResponse: NSObject {
 
     - parameter completion: The completion block that is called once the request for the next page has finished.
     */
-    public func loadNextPage(_ completion: UsergridResponseCompletion) {
+    public func loadNextPage(_ completion: @escaping UsergridResponseCompletion) {
         if self.hasNextPage, let type = (self.responseJSON?["path"] as? NSString)?.lastPathComponent {
             if let query = self.query?.copy() as? UsergridQuery {
                 self.client?.GET(query.cursor(self.cursor), queryCompletion:completion)

@@ -248,7 +248,7 @@ public class UsergridUser : UsergridEntity {
     - parameter username:   The optional username.
     - parameter completion: The completion block.
     */
-    public static func checkAvailable(_ email:String?, username:String?, completion:UsergridUserAvailabilityCompletion) {
+    public static func checkAvailable(_ email:String?, username:String?, completion:@escaping UsergridUserAvailabilityCompletion) {
         self.checkAvailable(Usergrid.sharedInstance, email: email, username: username, completion: completion)
     }
 
@@ -260,7 +260,7 @@ public class UsergridUser : UsergridEntity {
      - parameter username:   The optional username.
      - parameter completion: The completion block.
      */
-    public static func checkAvailable(_ client: UsergridClient, email:String?, username:String?, completion:UsergridUserAvailabilityCompletion) {
+    public static func checkAvailable(_ client: UsergridClient, email:String?, username:String?, completion:@escaping UsergridUserAvailabilityCompletion) {
         let query = UsergridQuery(USER_ENTITY_TYPE)
         if let emailValue = email {
             query.eq(UsergridUserProperties.email.stringValue, value: emailValue)
