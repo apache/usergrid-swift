@@ -40,23 +40,23 @@ public class UsergridManager {
         ActivityEntity.registerSubclass()
     }
 
-    static func loginUser(_ username:String, password:String, completion:UsergridUserAuthCompletionBlock) {
+    static func loginUser(_ username:String, password:String, completion:@escaping UsergridUserAuthCompletionBlock) {
         let userAuth = UsergridUserAuth(username: username, password: password)
         Usergrid.authenticateUser(userAuth, completion: completion)
     }
 
-    static func createUser(_ name:String, username:String, email:String, password:String, completion:UsergridResponseCompletion) {
+    static func createUser(_ name:String, username:String, email:String, password:String, completion:@escaping UsergridResponseCompletion) {
         let user = UsergridUser(name: name, propertyDict: [UsergridUserProperties.username.stringValue:username,
                                                             UsergridUserProperties.email.stringValue:email,
                                                             UsergridUserProperties.password.stringValue:password])
         user.create(completion)
     }
 
-    static func getFeedMessages(_ completion:UsergridResponseCompletion) {
+    static func getFeedMessages(_ completion:@escaping UsergridResponseCompletion) {
         Usergrid.GET(UsergridQuery("users/me/feed").desc(UsergridEntityProperties.created.stringValue), queryCompletion: completion)
     }
 
-    static func postFeedMessage(_ text:String,completion:UsergridResponseCompletion) {
+    static func postFeedMessage(_ text:String,completion:@escaping UsergridResponseCompletion) {
         let currentUser = Usergrid.currentUser!
 
         let verb = "post"
@@ -72,7 +72,7 @@ public class UsergridManager {
         Usergrid.POST("users/me/activities", jsonBody: ["actor":actorDictionary,"verb":verb,"content":content], completion: completion)
     }
 
-    static func followUser(_ username:String, completion:UsergridResponseCompletion) {
+    static func followUser(_ username:String, completion:@escaping UsergridResponseCompletion) {
         Usergrid.connect("users", entityID: "me", relationship: "following", toType: "users", toName: username, completion: completion)
     }
 }
