@@ -13,7 +13,7 @@ Usergrid SDK written in Swift
 > **Use `#import <UsergridSDK/UsergridSDK-Swift.h>` in your Objective-C files to enable the use of the SDK.**
 
 - iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.1+ / watchOS 2.1+
-- Xcode 7.1+
+- Xcode < 8
 
 ## Installation
 
