@@ -130,7 +130,9 @@ public class UsergridClient: NSObject, NSCoding {
         if persistCurrentUserInKeychain {
             self.currentUser = UsergridUser.getCurrentUserFromKeychain(self) // Attempt to get the current user from the saved keychain data.
         }
-        UsergridDevice.sharedDevice.save(self)
+        DispatchQueue.global().async {
+            UsergridDevice.sharedDevice.save(self)
+        }
     }
 
     // MARK: - NSCoding -
