@@ -357,7 +357,7 @@ At times it is desireable to have complete, granular control over the authentica
 To facilitate this, the passthrough function `.usingAuth()` allows you to pre-define the auth context of the next API call.
 
 ```swift
-// assume Usergrid.authFallback = .None
+// assume Usergrid.authMode = .None
     
 Usergrid.usingAuth(Usergrid.appAuth!).POST("roles/guest/permissions", jsonBody: ["permission" : "get,post,put,delete:/**"] ) { response in
     // here we've temporarily used the client credentials to modify permissions
