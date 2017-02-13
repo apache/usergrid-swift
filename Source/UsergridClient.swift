@@ -32,7 +32,13 @@ The `UsergridClient` class is the base handler for making client connections to 
 */
 public class UsergridClient: NSObject, NSCoding {
 
-    static let DEFAULT_BASE_URL = "https://apibaas-trial.apigee.net"
+    // MARK: - Static Variables -
+
+    /// The default base URL for all calls made by the UsergridClient instances.
+    public static let DEFAULT_BASE_URL = "https://apibaas-trial.apigee.net"
+
+    /// The default auth mode used when creating UsergridClient instances.
+    public static let DEFAULT_AUTH_MODE: UsergridAuthMode = .user
 
     // MARK: - Instance Properties -
 

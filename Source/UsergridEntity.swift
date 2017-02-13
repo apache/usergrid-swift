@@ -188,7 +188,7 @@ open class UsergridEntity: NSObject, NSCoding {
 
     - parameter aDecoder: The decoder.
 
-    - returns: A decoded `UsergridUser` object.
+    - returns: A decoded `UsergridEntity` object.
     */
     required public init?(coder aDecoder: NSCoder) {
         guard let properties = aDecoder.decodeObject(forKey: "properties") as? [String:Any]

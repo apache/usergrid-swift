@@ -148,7 +148,7 @@ public class UsergridAsset: NSObject, NSCoding {
 
     - parameter aDecoder: The decoder.
 
-    - returns: A decoded `UsergridUser` object.
+    - returns: A decoded `UsergridAsset` object.
     */
     required public init?(coder aDecoder: NSCoder) {
         guard   let filename = aDecoder.decodeObject(forKey: "filename") as? String,

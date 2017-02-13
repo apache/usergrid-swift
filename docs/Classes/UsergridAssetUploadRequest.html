@@ -14,12 +14,12 @@
     <a title="UsergridAssetUploadRequest Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p><a href="../index.html">UsergridSDK Docs</a></p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../index.html"> Reference</a>
+        <a href="../index.html">UsergridSDK Reference</a>
         <img id="carat" src="../img/carat.png" />
         UsergridAssetUploadRequest Class Reference
       </p>
@@ -124,7 +124,10 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/NSDate.html">NSDate</a>
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UsergridSessionDelegate.html">UsergridSessionDelegate</a>
               </li>
             </ul>
           </li>
@@ -165,7 +168,7 @@
             <h1>UsergridAssetUploadRequest</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">UsergridAssetUploadRequest</span><span class="p">:</span> <span class="kt">UsergridRequest</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">UsergridAssetUploadRequest</span><span class="p">:</span> <span class="kt"><a href="../Classes/UsergridRequest.html">UsergridRequest</a></span></code></pre>
 
                 </div>
               </div>
@@ -202,7 +205,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">asset</span><span class="p">:</span> <span class="kt">UsergridAsset</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">asset</span><span class="p">:</span> <span class="kt"><a href="../Classes/UsergridAsset.html">UsergridAsset</a></span></code></pre>
 
                         </div>
                       </div>
@@ -212,9 +215,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC11UsergridSDK26UsergridAssetUploadRequest17multiPartHTTPBodyCSo6NSData"></a>
+                    <a name="/s:vC11UsergridSDK26UsergridAssetUploadRequest17multiPartHTTPBodyV10Foundation4Data"></a>
                     <a name="//apple_ref/swift/Property/multiPartHTTPBody" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC11UsergridSDK26UsergridAssetUploadRequest17multiPartHTTPBodyCSo6NSData">multiPartHTTPBody</a>
+                    <a class="token" href="#/s:vC11UsergridSDK26UsergridAssetUploadRequest17multiPartHTTPBodyV10Foundation4Data">multiPartHTTPBody</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -229,7 +232,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">multiPartHTTPBody</span><span class="p">:</span> <span class="kt">NSData</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">multiPartHTTPBody</span><span class="p">:</span> <span class="kt">Data</span></code></pre>
 
                         </div>
                       </div>
@@ -260,7 +263,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The designated initializer for <code><a href="../Classes/UsergridAssetUploadRequest.html">UsergridAssetUploadRequest</a></code> objects.</p>
+                        <p>The designated initializer for <code>UsergridAssetUploadRequest</code> objects.</p>
 
                       </div>
                       <div class="declaration">
@@ -269,8 +272,8 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">baseUrl</span><span class="p">:</span><span class="kt">String</span><span class="p">,</span>
                 <span class="nv">paths</span><span class="p">:[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                <span class="nv">auth</span><span class="p">:</span><span class="kt">UsergridAuth</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
-                <span class="k">as</span><span class="nv">set</span><span class="p">:</span><span class="kt">UsergridAsset</span><span class="p">)</span></code></pre>
+                <span class="nv">auth</span><span class="p">:</span><span class="kt"><a href="../Classes/UsergridAuth.html">UsergridAuth</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                <span class="k">as</span><span class="nv">set</span><span class="p">:</span><span class="kt"><a href="../Classes/UsergridAsset.html">UsergridAsset</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -346,8 +349,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-04-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/apache/usergrid-swift" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2017-02-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

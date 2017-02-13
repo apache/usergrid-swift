@@ -83,7 +83,7 @@ public class UsergridFileMetaData : NSObject,NSCoding {
 
     - parameter aDecoder: The decoder.
 
-    - returns: A decoded `UsergridUser` object.
+    - returns: A decoded `UsergridFileMetaData` object.
     */
     required public init?(coder aDecoder: NSCoder) {
         self.eTag = aDecoder.decodeObject(forKey: "etag") as? String

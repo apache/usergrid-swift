@@ -14,12 +14,12 @@
     <a title="UsergridQuery Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p><a href="../index.html">UsergridSDK Docs</a></p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../index.html"> Reference</a>
+        <a href="../index.html">UsergridSDK Reference</a>
         <img id="carat" src="../img/carat.png" />
         UsergridQuery Class Reference
       </p>
@@ -124,7 +124,10 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/NSDate.html">NSDate</a>
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UsergridSessionDelegate.html">UsergridSessionDelegate</a>
               </li>
             </ul>
           </li>
@@ -187,9 +190,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuerycFTGSqSS__S0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuerycFGSqSS_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuerycFTGSqSS__S0_">init(_:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuerycFGSqSS_S0_">init(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -197,7 +200,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Desingated initializer for <code><a href="../Classes/UsergridQuery.html">UsergridQuery</a></code> objects.</p>
+                        <p>Desingated initializer for <code>UsergridQuery</code> objects.</p>
 
                       </div>
                       <div class="declaration">
@@ -230,7 +233,7 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A new instance of <code><a href="../Classes/UsergridQuery.html">UsergridQuery</a></code>.</p>
+                        <p>A new instance of <code>UsergridQuery</code>.</p>
 
                       </div>
                     </section>
@@ -250,9 +253,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery12copyWithZoneFV10ObjectiveC6NSZonePs9AnyObject_"></a>
-                    <a name="//apple_ref/swift/Method/copyWithZone(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery12copyWithZoneFV10ObjectiveC6NSZonePs9AnyObject_">copyWithZone(_:)</a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery4copyFT4withGSqV10ObjectiveC6NSZone__P_"></a>
+                    <a name="//apple_ref/swift/Method/copy(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery4copyFT4withGSqV10ObjectiveC6NSZone__P_">copy(with:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -267,7 +270,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">copyWithZone</span><span class="p">(</span><span class="nv">zone</span><span class="p">:</span> <span class="kt">NSZone</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">AnyObject</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">copy</span><span class="p">(</span><span class="n">with</span> <span class="nv">zone</span><span class="p">:</span> <span class="kt">NSZone</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Any</span></code></pre>
 
                         </div>
                       </div>
@@ -313,9 +316,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery5buildFTSb_SS"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery5buildFSbSS"></a>
                     <a name="//apple_ref/swift/Method/build(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery5buildFTSb_SS">build(_:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery5buildFSbSS">build(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -330,7 +333,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">build</span><span class="p">(</span><span class="nv">autoURLEncode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">build</span><span class="p">(</span><span class="n">_</span> <span class="nv">autoURLEncode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -393,7 +396,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">contains</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">containsWord</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">contains</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -458,7 +461,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">containsString</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">containsWord</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">containsString</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -523,7 +526,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">containsWord</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">addRequirement</span><span class="p">(</span><span class="n">term</span> <span class="o">+</span> <span class="kt">UsergridQuery</span><span class="o">.</span><span class="kt">SPACE</span> <span class="o">+</span> <span class="kt">UsergridQuery</span><span class="o">.</span><span class="kt">CONTAINS</span> <span class="o">+</span> <span class="kt">UsergridQuery</span><span class="o">.</span><span class="kt">SPACE</span> <span class="o">+</span> <span class="p">((</span><span class="n">value</span><span class="o">.</span><span class="nf">isUuid</span><span class="p">())</span> <span class="p">?</span> <span class="kt">UsergridQuery</span><span class="o">.</span><span class="kt">EMPTY_STRING</span> <span class="p">:</span> <span class="kt">UsergridQuery</span><span class="o">.</span><span class="kt">APOSTROPHE</span><span class="p">)</span> <span class="o">+</span> <span class="n">value</span> <span class="o">+</span> <span class="p">((</span><span class="n">value</span><span class="o">.</span><span class="nf">isUuid</span><span class="p">())</span> <span class="p">?</span> <span class="kt">UsergridQuery</span><span class="o">.</span><span class="kt">EMPTY_STRING</span> <span class="p">:</span> <span class="kt">UsergridQuery</span><span class="o">.</span><span class="kt">APOSTROPHE</span><span class="p">))</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">containsWord</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -588,7 +591,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">ascending</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">asc</span><span class="p">(</span><span class="n">term</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">ascending</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -640,7 +643,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asc</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">sort</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">sortOrder</span><span class="p">:</span> <span class="o">.</span><span class="kt">Asc</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asc</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -692,7 +695,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">descending</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">desc</span><span class="p">(</span><span class="n">term</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">descending</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -744,7 +747,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">desc</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">sort</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">sortOrder</span><span class="p">:</span> <span class="o">.</span><span class="kt">Desc</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">desc</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -779,9 +782,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery6filterFTSS5valuePs9AnyObject__DS0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery6filterFTSS5valueP__DS0_"></a>
                     <a name="//apple_ref/swift/Method/filter(_:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery6filterFTSS5valuePs9AnyObject__DS0_">filter(_:value:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery6filterFTSS5valueP__DS0_">filter(_:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -796,7 +799,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">filter</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">eq</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">filter</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -844,9 +847,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery6equalsFTSS5valuePs9AnyObject__DS0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery6equalsFTSS5valueP__DS0_"></a>
                     <a name="//apple_ref/swift/Method/equals(_:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery6equalsFTSS5valuePs9AnyObject__DS0_">equals(_:value:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery6equalsFTSS5valueP__DS0_">equals(_:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -861,7 +864,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">equals</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">eq</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">equals</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -909,9 +912,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery2eqFTSS5valuePs9AnyObject__DS0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery2eqFTSS5valueP__DS0_"></a>
                     <a name="//apple_ref/swift/Method/eq(_:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery2eqFTSS5valuePs9AnyObject__DS0_">eq(_:value:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery2eqFTSS5valueP__DS0_">eq(_:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -926,7 +929,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">eq</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">addOperationRequirement</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span><span class="o">.</span><span class="kt">Equal</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">eq</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -974,9 +977,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery11greaterThanFTSS5valuePs9AnyObject__DS0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery11greaterThanFTSS5valueP__DS0_"></a>
                     <a name="//apple_ref/swift/Method/greaterThan(_:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery11greaterThanFTSS5valuePs9AnyObject__DS0_">greaterThan(_:value:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery11greaterThanFTSS5valueP__DS0_">greaterThan(_:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -991,7 +994,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">greaterThan</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">gt</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">greaterThan</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1039,9 +1042,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery2gtFTSS5valuePs9AnyObject__DS0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery2gtFTSS5valueP__DS0_"></a>
                     <a name="//apple_ref/swift/Method/gt(_:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery2gtFTSS5valuePs9AnyObject__DS0_">gt(_:value:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery2gtFTSS5valueP__DS0_">gt(_:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1056,7 +1059,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">gt</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">addOperationRequirement</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span><span class="o">.</span><span class="kt">GreaterThan</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">gt</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1104,9 +1107,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery18greaterThanOrEqualFTSS5valuePs9AnyObject__DS0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery18greaterThanOrEqualFTSS5valueP__DS0_"></a>
                     <a name="//apple_ref/swift/Method/greaterThanOrEqual(_:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery18greaterThanOrEqualFTSS5valuePs9AnyObject__DS0_">greaterThanOrEqual(_:value:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery18greaterThanOrEqualFTSS5valueP__DS0_">greaterThanOrEqual(_:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1121,7 +1124,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">greaterThanOrEqual</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">gte</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">greaterThanOrEqual</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1169,9 +1172,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery3gteFTSS5valuePs9AnyObject__DS0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery3gteFTSS5valueP__DS0_"></a>
                     <a name="//apple_ref/swift/Method/gte(_:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery3gteFTSS5valuePs9AnyObject__DS0_">gte(_:value:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery3gteFTSS5valueP__DS0_">gte(_:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1186,7 +1189,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">gte</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">addOperationRequirement</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span><span class="o">.</span><span class="kt">GreaterThanEqualTo</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">gte</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1234,9 +1237,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery8lessThanFTSS5valuePs9AnyObject__DS0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery8lessThanFTSS5valueP__DS0_"></a>
                     <a name="//apple_ref/swift/Method/lessThan(_:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery8lessThanFTSS5valuePs9AnyObject__DS0_">lessThan(_:value:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery8lessThanFTSS5valueP__DS0_">lessThan(_:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1251,7 +1254,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lessThan</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">lt</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lessThan</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1299,9 +1302,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery2ltFTSS5valuePs9AnyObject__DS0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery2ltFTSS5valueP__DS0_"></a>
                     <a name="//apple_ref/swift/Method/lt(_:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery2ltFTSS5valuePs9AnyObject__DS0_">lt(_:value:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery2ltFTSS5valueP__DS0_">lt(_:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1316,7 +1319,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lt</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">addOperationRequirement</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span><span class="o">.</span><span class="kt">LessThan</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lt</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1364,9 +1367,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery15lessThanOrEqualFTSS5valuePs9AnyObject__DS0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery15lessThanOrEqualFTSS5valueP__DS0_"></a>
                     <a name="//apple_ref/swift/Method/lessThanOrEqual(_:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery15lessThanOrEqualFTSS5valuePs9AnyObject__DS0_">lessThanOrEqual(_:value:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery15lessThanOrEqualFTSS5valueP__DS0_">lessThanOrEqual(_:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1381,7 +1384,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lessThanOrEqual</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">lte</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lessThanOrEqual</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1429,9 +1432,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK13UsergridQuery3lteFTSS5valuePs9AnyObject__DS0_"></a>
+                    <a name="/s:FC11UsergridSDK13UsergridQuery3lteFTSS5valueP__DS0_"></a>
                     <a name="//apple_ref/swift/Method/lte(_:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery3lteFTSS5valuePs9AnyObject__DS0_">lte(_:value:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK13UsergridQuery3lteFTSS5valueP__DS0_">lte(_:value:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1446,7 +1449,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lte</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="nf">addOperationRequirement</span><span class="p">(</span><span class="n">term</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span><span class="o">.</span><span class="kt">LessThanEqualTo</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="n">value</span><span class="p">)</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lte</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1511,7 +1514,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">locationWithin</span><span class="p">(</span><span class="nv">distance</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">latitude</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">locationWithin</span><span class="p">(</span><span class="n">_</span> <span class="nv">distance</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">latitude</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1685,7 +1688,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sort</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">sortOrder</span><span class="p">:</span> <span class="kt">UsergridQuerySortOrder</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sort</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">sortOrder</span><span class="p">:</span> <span class="kt"><a href="../Enums/UsergridQuerySortOrder.html">UsergridQuerySortOrder</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1750,7 +1753,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">collection</span><span class="p">(</span><span class="nv">collectionName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">collection</span><span class="p">(</span><span class="n">_</span> <span class="nv">collectionName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1802,7 +1805,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">type</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">type</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1854,7 +1857,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">limit</span><span class="p">(</span><span class="nv">limit</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">limit</span><span class="p">(</span><span class="n">_</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1906,7 +1909,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">ql</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">ql</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -1958,7 +1961,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">cursor</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">cursor</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -2010,7 +2013,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fromString</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fromString</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -2062,7 +2065,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">urlTerm</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">equalsValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">urlTerm</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">equalsValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -2127,7 +2130,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addOperationRequirement</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span> <span class="kt">UsergridQueryOperator</span><span class="p">,</span> <span class="nv">stringValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addOperationRequirement</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span> <span class="kt"><a href="../Enums/UsergridQueryOperator.html">UsergridQueryOperator</a></span><span class="p">,</span> <span class="nv">stringValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -2205,7 +2208,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addOperationRequirement</span><span class="p">(</span><span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span> <span class="kt">UsergridQueryOperator</span><span class="p">,</span> <span class="nv">intValue</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addOperationRequirement</span><span class="p">(</span><span class="n">_</span> <span class="nv">term</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">operation</span><span class="p">:</span> <span class="kt"><a href="../Enums/UsergridQueryOperator.html">UsergridQueryOperator</a></span><span class="p">,</span> <span class="nv">intValue</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -2268,8 +2271,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-04-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/apache/usergrid-swift" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2017-02-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

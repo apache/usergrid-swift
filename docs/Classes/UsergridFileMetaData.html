@@ -14,12 +14,12 @@
     <a title="UsergridFileMetaData Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p><a href="../index.html">UsergridSDK Docs</a></p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../index.html"> Reference</a>
+        <a href="../index.html">UsergridSDK Reference</a>
         <img id="carat" src="../img/carat.png" />
         UsergridFileMetaData Class Reference
       </p>
@@ -124,7 +124,10 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/NSDate.html">NSDate</a>
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UsergridSessionDelegate.html">UsergridSessionDelegate</a>
               </li>
             </ul>
           </li>
@@ -320,9 +323,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC11UsergridSDK20UsergridFileMetaData16lastModifiedDateGSqCSo6NSDate_"></a>
+                    <a name="/s:vC11UsergridSDK20UsergridFileMetaData16lastModifiedDateGSqV10Foundation4Date_"></a>
                     <a name="//apple_ref/swift/Property/lastModifiedDate" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC11UsergridSDK20UsergridFileMetaData16lastModifiedDateGSqCSo6NSDate_">lastModifiedDate</a>
+                    <a class="token" href="#/s:vC11UsergridSDK20UsergridFileMetaData16lastModifiedDateGSqV10Foundation4Date_">lastModifiedDate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -330,14 +333,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The <code><a href="../Extensions/NSDate.html">NSDate</a></code> object corresponding to the last modified time stamp.</p>
+                        <p>The <code>NSDate</code> object corresponding to the last modified time stamp.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastModifiedDate</span><span class="p">:</span> <span class="kt">NSDate</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastModifiedDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -358,9 +361,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK20UsergridFileMetaDatacFT16fileMetaDataJSONGVs10DictionarySSPs9AnyObject___S0_"></a>
+                    <a name="/s:FC11UsergridSDK20UsergridFileMetaDatacFT16fileMetaDataJSONGVs10DictionarySSP___S0_"></a>
                     <a name="//apple_ref/swift/Method/init(fileMetaDataJSON:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK20UsergridFileMetaDatacFT16fileMetaDataJSONGVs10DictionarySSPs9AnyObject___S0_">init(fileMetaDataJSON:)</a>
+                    <a class="token" href="#/s:FC11UsergridSDK20UsergridFileMetaDatacFT16fileMetaDataJSONGVs10DictionarySSP___S0_">init(fileMetaDataJSON:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -368,14 +371,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Designated initializer for <code><a href="../Classes/UsergridFileMetaData.html">UsergridFileMetaData</a></code> objects.</p>
+                        <p>Designated initializer for <code>UsergridFileMetaData</code> objects.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">fileMetaDataJSON</span><span class="p">:[</span><span class="kt">String</span><span class="p">:</span><span class="kt">AnyObject</span><span class="p">])</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">fileMetaDataJSON</span><span class="p">:[</span><span class="kt">String</span><span class="p">:</span><span class="kt">Any</span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
@@ -401,7 +404,7 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A new instance of <code><a href="../Classes/UsergridFileMetaData.html">UsergridFileMetaData</a></code>.</p>
+                        <p>A new instance of <code>UsergridFileMetaData</code>.</p>
 
                       </div>
                     </section>
@@ -464,7 +467,7 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A decoded <code><a href="../Classes/UsergridUser.html">UsergridUser</a></code> object.</p>
+                        <p>A decoded <code>UsergridFileMetaData</code> object.</p>
 
                       </div>
                     </section>
@@ -473,9 +476,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC11UsergridSDK20UsergridFileMetaData15encodeWithCoderFCSo7NSCoderT_"></a>
-                    <a name="//apple_ref/swift/Method/encodeWithCoder(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC11UsergridSDK20UsergridFileMetaData15encodeWithCoderFCSo7NSCoderT_">encodeWithCoder(_:)</a>
+                    <a name="/s:FC11UsergridSDK20UsergridFileMetaData6encodeFT4withCSo7NSCoder_T_"></a>
+                    <a name="//apple_ref/swift/Method/encode(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK20UsergridFileMetaData6encodeFT4withCSo7NSCoder_T_">encode(with:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -490,7 +493,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encodeWithCoder</span><span class="p">(</span><span class="nv">aCoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">with</span> <span class="nv">aCoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -522,8 +525,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-04-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/apache/usergrid-swift" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2017-02-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -31,8 +31,6 @@ An enumeration that is used to determine what the `UsergridClient` will use for 
 */
 @objc public enum UsergridAuthMode : Int {
 
-    static let defaultMode: UsergridAuthMode = .user
-
     // MARK: - Values -
 
     /**

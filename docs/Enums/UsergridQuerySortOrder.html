@@ -14,12 +14,12 @@
     <a title="UsergridQuerySortOrder Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p><a href="../index.html">UsergridSDK Docs</a></p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../index.html"> Reference</a>
+        <a href="../index.html">UsergridSDK Reference</a>
         <img id="carat" src="../img/carat.png" />
         UsergridQuerySortOrder Enum Reference
       </p>
@@ -124,7 +124,10 @@
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/NSDate.html">NSDate</a>
+                <a href="../Extensions/Date.html">Date</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UsergridSessionDelegate.html">UsergridSessionDelegate</a>
               </li>
             </ul>
           </li>
@@ -178,9 +181,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridQuerySortOrder3AscFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Asc" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridQuerySortOrder3AscFMS0_S0_">Asc</a>
+                    <a name="/s:FO11UsergridSDK22UsergridQuerySortOrder3ascFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/asc" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO11UsergridSDK22UsergridQuerySortOrder3ascFMS0_S0_">asc</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -195,7 +198,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Asc</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="k">as</span><span class="n">c</span></code></pre>
 
                         </div>
                       </div>
@@ -209,9 +212,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK22UsergridQuerySortOrder4DescFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/Desc" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK22UsergridQuerySortOrder4DescFMS0_S0_">Desc</a>
+                    <a name="/s:FO11UsergridSDK22UsergridQuerySortOrder4descFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/desc" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO11UsergridSDK22UsergridQuerySortOrder4descFMS0_S0_">desc</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -226,7 +229,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">Desc</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">desc</span></code></pre>
 
                         </div>
                       </div>
@@ -257,14 +260,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Gets the corresponding <code><a href="../Enums/UsergridQuerySortOrder.html">UsergridQuerySortOrder</a></code> from a string if it&rsquo;s valid.</p>
+                        <p>Gets the corresponding <code>UsergridQuerySortOrder</code> from a string if it&rsquo;s valid.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">fromString</span><span class="p">(</span><span class="nv">stringValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UsergridQuerySortOrder</span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">fromString</span><span class="p">(</span><span class="n">_</span> <span class="nv">stringValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UsergridQuerySortOrder</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -290,7 +293,7 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>The corresponding <code><a href="../Enums/UsergridQuerySortOrder.html">UsergridQuerySortOrder</a></code> or nil.</p>
+                        <p>The corresponding <code>UsergridQuerySortOrder</code> or nil.</p>
 
                       </div>
                     </section>
@@ -328,8 +331,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-04-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/apache/usergrid-swift" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2017-02-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

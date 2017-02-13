@@ -91,7 +91,7 @@ public class UsergridDevice : UsergridEntity {
 
     - parameter aDecoder: The decoder.
 
-    - returns: A decoded `UsergridUser` object.
+    - returns: A decoded `UsergridDevice` object.
     */
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
