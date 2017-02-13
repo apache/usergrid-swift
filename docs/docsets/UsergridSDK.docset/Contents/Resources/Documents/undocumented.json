@@ -1,26 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/Users/ApigeeCorporation/Developer/Usergrid_SDK_Repos/Swift/rwalsh_fork/usergrid-swift/Source/UsergridSessionDelegate.swift",
-      "line": null,
-      "symbol": "UsergridSessionDelegate",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ApigeeCorporation/Developer/Usergrid_SDK_Repos/Swift/rwalsh_fork/usergrid-swift/Source/UsergridSessionDelegate.swift",
-      "line": 61,
-      "symbol": "UsergridSessionDelegate.urlSession(_:dataTask:didReceive:completionHandler:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ApigeeCorporation/Developer/Usergrid_SDK_Repos/Swift/rwalsh_fork/usergrid-swift/Source/UsergridSessionDelegate.swift",
-      "line": 68,
-      "symbol": "UsergridSessionDelegate.urlSession(_:dataTask:didReceive:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/Users/ApigeeCorporation/Developer/Usergrid_SDK_Repos/Swift/rwalsh_fork/usergrid-swift"
 }

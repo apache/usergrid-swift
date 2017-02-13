@@ -58,14 +58,14 @@ extension UsergridSessionDelegate : URLSessionTaskDelegate {
 
 extension UsergridSessionDelegate : URLSessionDataDelegate {
 
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Swift.Void) {
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Swift.Void) {
         if let requestWrapper = requestDelegates[dataTask.taskIdentifier] {
             requestWrapper.response = response
         }
         completionHandler(Foundation.URLSession.ResponseDisposition.allow)
     }
 
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         if let requestWrapper = requestDelegates[dataTask.taskIdentifier] {
             var mutableData = requestWrapper.responseData != nil ? (NSMutableData(data: requestWrapper.responseData!) as Data) : Data()
             mutableData.append(data)
