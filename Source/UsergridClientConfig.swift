@@ -45,7 +45,7 @@ public class UsergridClientConfig : NSObject, NSCoding {
     public var baseUrl: String = UsergridClient.DEFAULT_BASE_URL
 
     /// The `UsergridAuthMode` value used to determine what type of token will be sent, if any.
-    public var authMode: UsergridAuthMode = .user
+    public var authMode: UsergridAuthMode = UsergridAuthMode.defaultMode
 
     /// Whether or not the `UsergridClient` current user will be saved and restored from the keychain.
     public var persistCurrentUserInKeychain: Bool = true
@@ -129,7 +129,7 @@ public class UsergridClientConfig : NSObject, NSCoding {
         self.baseUrl = baseUrl
         self.appAuth = aDecoder.decodeObject(forKey: "appAuth") as? UsergridAppAuth
         self.persistCurrentUserInKeychain = aDecoder.decodeBool(forKey: "persistCurrentUserInKeychain")
-        self.authMode = (UsergridAuthMode(rawValue:aDecoder.decodeInteger(forKey: "authMode")) ?? .none)!
+        self.authMode = UsergridAuthMode(rawValue:aDecoder.decodeInteger(forKey: "authMode")) ?? UsergridAuthMode.defaultMode
         super.init()
     }
 
