@@ -501,11 +501,11 @@ public class UsergridUser : UsergridEntity {
     - Warning: When setting a properties value must be a valid JSON object.
 
     - Example usage:
-    ```
-    let someName = usergridUser["name"]
-    
-    usergridUser["name"] = someName
-    ```
+     
+        ```
+        let someName = usergridUser["name"]
+        usergridUser["name"] = someName
+        ```
     */
     override public subscript(propertyName: String) -> Any? {
         get {

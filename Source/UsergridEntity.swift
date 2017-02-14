@@ -220,6 +220,7 @@ open class UsergridEntity: NSObject, NSCoding {
     Subscript for the `UsergridEntity` class.
     
     - Example usage:
+     
         ```
         let propertyValue = usergridEntity["propertyName"]
         usergridEntity["propertyName"] = propertyValue

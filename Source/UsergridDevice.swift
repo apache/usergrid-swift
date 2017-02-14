@@ -150,6 +150,7 @@ public class UsergridDevice : UsergridEntity {
     - Warning: When setting a properties value must be a valid JSON object.
 
     - Example usage:
+     
         ```
         let uuid = usergridDevice["uuid"]
         ```
