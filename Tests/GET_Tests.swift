@@ -29,24 +29,49 @@ import XCTest
 
 class GET_Tests: XCTestCase {
 
-    static let collectionName = "books"
-    static let entityUUID = "f4078aca-2fb1-11e5-8eb2-e13f8369aad1"
-
-    let query = UsergridQuery(GET_Tests.collectionName).eq("title", value: "The Sun Also Rises").or().eq("title", value: "The Old Man and the Sea")
+    static let collectionName = "getTestEntities"
+    var postedEntities: [UsergridEntity] = []
 
     override func setUp() {
         super.setUp()
-        Usergrid.initSharedInstance(orgId:ClientCreationTests.orgId, appId: ClientCreationTests.appId)
+
+        let exp = self.expectation(description: "\(#function)")
+        POST_TEST_ENTITIES(count:20 ,completion: { response in
+            self.postedEntities = response.entities!
+            exp.fulfill()
+        })
+        waitForExpectations(timeout: 10, handler: nil)
     }
 
     override func tearDown() {
-        Usergrid._sharedClient = nil
         super.tearDown()
+        let exp = self.expectation(description: "\(#function)")
+        DELETE_TEST_ENTITIES() { response in
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+
+    
+    func POST_TEST_ENTITIES(count: Int, completion: @escaping UsergridResponseCompletion) {
+        var entitiesToPost: [UsergridEntity] = []
+        for _ in (0..<count) {
+            let entity = UsergridEntity(type: GET_Tests.collectionName, propertyDict: ["gettest":true])
+            entitiesToPost.append(entity)
+        }
+        Usergrid.POST(entitiesToPost,entitiesCompletion:{response in
+            completion(response)
+        })
+    }
+
+    func DELETE_TEST_ENTITIES(completion: @escaping UsergridResponseCompletion) {
+        Usergrid.DELETE(UsergridQuery().type(GET_Tests.collectionName).limit(100),queryCompletion:completion)
     }
 
     func test_GET_WITHOUT_QUERY() {
 
         let getExpect = self.expectation(description: "\(#function)")
+
         Usergrid.GET(GET_Tests.collectionName) { (response) in
             XCTAssertTrue(Thread.isMainThread)
             XCTAssertNotNil(response)
@@ -55,17 +80,19 @@ class GET_Tests: XCTestCase {
             XCTAssertEqual(response.count, 10)
             getExpect.fulfill()
         }
+
         self.waitForExpectations(timeout: 10, handler: nil)
     }
 
     func test_GET_WITH_QUERY() {
 
         let getExpect = self.expectation(description: "\(#function)")
-        Usergrid.GET(self.query) { (response) in
+
+        Usergrid.GET(UsergridQuery(GET_Tests.collectionName)) { (response) in
             XCTAssertTrue(Thread.isMainThread)
             XCTAssertNotNil(response)
             XCTAssertTrue(response.ok)
-            XCTAssertEqual(response.count, 1)
+            XCTAssertEqual(response.count, 10)
             getExpect.fulfill()
         }
         self.waitForExpectations(timeout: 10, handler: nil)
@@ -74,7 +101,9 @@ class GET_Tests: XCTestCase {
     func test_GET_WITH_UUID() {
 
         let getExpect = self.expectation(description: "\(#function)")
-        Usergrid.GET(GET_Tests.collectionName, uuidOrName:GET_Tests.entityUUID) { (response) in
+        let postedEntityUUID = postedEntities.first!.uuid!
+
+        Usergrid.GET(GET_Tests.collectionName, uuidOrName:postedEntityUUID) { (response) in
             XCTAssertTrue(Thread.isMainThread)
             XCTAssertNotNil(response)
             XCTAssertTrue(response.ok)
@@ -82,7 +111,7 @@ class GET_Tests: XCTestCase {
             XCTAssertFalse(response.hasNextPage)
             XCTAssertEqual(response.count, 1)
             XCTAssertNotNil(entity)
-            XCTAssertEqual(entity.uuid!, GET_Tests.entityUUID)
+            XCTAssertEqual(entity.uuid!, postedEntityUUID)
             getExpect.fulfill()
         }
         self.waitForExpectations(timeout: 10, handler: nil)
@@ -91,6 +120,7 @@ class GET_Tests: XCTestCase {
     func test_GET_NEXT_PAGE_WITH_NO_QUERY() {
 
         let getExpect = self.expectation(description: "\(#function)")
+
         Usergrid.GET(GET_Tests.collectionName) { (response) in
             XCTAssertTrue(Thread.isMainThread)
             XCTAssertNotNil(response)

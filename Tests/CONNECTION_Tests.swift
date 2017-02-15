@@ -29,18 +29,14 @@ import XCTest
 
 class CONNECTION_Tests: XCTestCase {
 
-    let clientAuth = UsergridAppAuth(clientId: "b3U6THNcevskEeOQZLcUROUUVA", clientSecret: "b3U6RZHYznP28xieBzQPackFPmmnevU")
-    fileprivate static let collectionName = "publicevent"
+    static let collectionName = "connectionTestEntity"
+    let clientAuth = UsergridAppAuth(clientId: "YXA68al98dLWEeahpA7sJBXz3w", clientSecret: "YXA6-CUpuVaNE3X_f6qDZuXskk_CdQw")
 
-    override func setUp() {
-        super.setUp()
-        Usergrid.initSharedInstance(orgId:ClientCreationTests.orgId, appId: "sdk.demo")
-    }
-
-    override func tearDown() {
-        Usergrid._sharedClient = nil
-        super.tearDown()
-    }
+    let connectionEntities = [UsergridEntity(type:collectionName),
+                              UsergridEntity(type:collectionName),
+                              UsergridEntity(type:collectionName),
+                              UsergridEntity(type:collectionName),
+                              UsergridEntity(type:collectionName)]
 
     func test_CLIENT_AUTH() {
 
@@ -55,17 +51,16 @@ class CONNECTION_Tests: XCTestCase {
 
                 XCTAssertNotNil(appAuth.accessToken)
                 XCTAssertNotNil(appAuth.expiry)
+                Usergrid.POST(self.connectionEntities) { (response) in
 
-                Usergrid.GET(CONNECTION_Tests.collectionName) { (response) in
                     XCTAssertTrue(Thread.isMainThread)
                     XCTAssertNotNil(response)
                     XCTAssertTrue(response.ok)
-                    XCTAssertTrue(response.hasNextPage)
-                    XCTAssertEqual(response.entities!.count, 10)
+                    XCTAssertEqual(response.entities!.count, self.connectionEntities.count)
 
                     let entity = response.first!
                     let entityToConnect = response.entities![1]
-                    XCTAssertEqual(entity.type, CONNECTION_Tests.collectionName)
+                    XCTAssertEqual(entity.type, CONNECTION_Tests.collectionName.lowercased())
 
                     entity.connect("likes", toEntity: entityToConnect) { (response) -> Void in
                         XCTAssertTrue(Thread.isMainThread)
@@ -90,7 +85,12 @@ class CONNECTION_Tests: XCTestCase {
                                     XCTAssertTrue(Thread.isMainThread)
                                     XCTAssertNotNil(response)
                                     XCTAssertTrue(response.ok)
-                                    authExpect.fulfill()
+
+                                    Usergrid.DELETE(UsergridQuery().type(CONNECTION_Tests.collectionName)) { response in
+                                        XCTAssertTrue(response.ok)
+                                        XCTAssertEqual(response.entities?.count, self.connectionEntities.count)
+                                        authExpect.fulfill()
+                                    }
                                 }
                             }
                         }

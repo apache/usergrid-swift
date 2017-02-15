@@ -29,54 +29,30 @@ import XCTest
 
 class AUTH_Tests: XCTestCase {
 
-    var appAuth: UsergridAppAuth!
-    var userAuth: UsergridUserAuth!
-
-    fileprivate static let collectionName = "publicevent"
-    fileprivate static let entityUUID = "fa015eaa-fe1c-11e3-b94b-63b29addea01"
-
-    override func setUp() {
-        super.setUp()
-        appAuth = UsergridAppAuth(clientId: "b3U6THNcevskEeOQZLcUROUUVA", clientSecret: "b3U6RZHYznP28xieBzQPackFPmmnevU")
-        userAuth = UsergridUserAuth(username: "username", password: "password")
-        Usergrid.initSharedInstance(orgId:ClientCreationTests.orgId, appId: "sdk.demo")
-    }
-
-    override func tearDown() {
-        Usergrid._sharedClient = nil
-        super.tearDown()
-    }
-
     func test_CLIENT_AUTH() {
 
         let authExpect = self.expectation(description: "\(#function)")
+
         Usergrid.authMode = .app
+        let appAuth = UsergridAppAuth(clientId: "YXA6-zvnTdLWEeaGGwrYgfQDvw", clientSecret: "YXA64tQ5qQAW_IZYUAOn_tDRKz0HrAU")
+
         Usergrid.authenticateApp(appAuth) { auth,error in
             XCTAssertTrue(Thread.isMainThread)
             XCTAssertNil(error)
             XCTAssertNotNil(Usergrid.appAuth)
 
             if let appAuth = Usergrid.appAuth {
-
                 XCTAssertNotNil(appAuth.accessToken)
                 XCTAssertNotNil(appAuth.expiry)
                 XCTAssertNotNil(appAuth.isValid)
-
-                Usergrid.GET(AUTH_Tests.collectionName) { (response) in
-                    XCTAssertTrue(Thread.isMainThread)
-                    XCTAssertNotNil(response)
-                    XCTAssertTrue(response.hasNextPage)
-                    XCTAssertEqual(response.entities!.count, 10)
-                    XCTAssertEqual(response.first!.type, AUTH_Tests.collectionName)
-                    
-                    authExpect.fulfill()
-                }
             }
+            authExpect.fulfill()
         }
-        self.waitForExpectations(timeout: 100, handler: nil)
+        self.waitForExpectations(timeout: 1000, handler: nil)
     }
 
     func test_DESTROY_AUTH() {
+
         let auth = UsergridAuth(accessToken: "YWMt91Q2YtWaEeW_Ki2uDueMEwAAAVMUTVSPeOdX-oradxdqirEFz5cPU3GWybs")
 
         XCTAssertTrue(auth.isValid)
@@ -92,6 +68,7 @@ class AUTH_Tests: XCTestCase {
 
     func test_APP_AUTH_NSCODING() {
 
+        let appAuth = UsergridAppAuth(clientId: "YXA6-zvnTdLWEeaGGwrYgfQDvw", clientSecret: "YXA64tQ5qQAW_IZYUAOn_tDRKz0HrAU")
         appAuth.accessToken = "YWMt91Q2YtWaEeW_Ki2uDueMEwAAAVMUTVSPeOdX-oradxdqirEFz5cPU3GWybs"
         appAuth.expiry = Date.distantFuture
 
@@ -111,6 +88,7 @@ class AUTH_Tests: XCTestCase {
 
     func test_USER_AUTH_NSCODING() {
 
+        let userAuth: UsergridUserAuth = UsergridUserAuth(username: "username", password: "password")
         userAuth.accessToken = "YWMt91Q2YtWaEeW_Ki2uDueMEwAAAVMUTVSPeOdX-oradxdqirEFz5cPU3GWybs"
         userAuth.expiry = Date.distantFuture
 
@@ -127,6 +105,4 @@ class AUTH_Tests: XCTestCase {
             XCTAssertEqual(userAuth.expiry,newInstance.expiry)
         }
     }
-
-
 }

@@ -93,6 +93,10 @@ internal extension UsergridDevice {
 
 
     static func saveSharedDeviceKeychainItem(_ device:UsergridDevice) {
+        if (NSClassFromString("XCTest") != nil) {
+            return
+        }
+
         var queryAttributes = UsergridDevice.deviceKeychainItem()
         queryAttributes[kSecReturnData as String] = (kCFBooleanTrue != nil) as Bool
         queryAttributes[kSecReturnAttributes as String] = (kCFBooleanTrue != nil) as Bool
