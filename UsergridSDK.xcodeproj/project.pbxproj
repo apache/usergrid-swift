@@ -111,6 +111,9 @@
 		63EE61031C406E1600AFC2CF /* UsergridAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F401BBC4EF6009D4196 /* UsergridAsset.swift */; };
 		63EE61041C406E1600AFC2CF /* UsergridClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF0F421BBC4EF6009D4196 /* UsergridClient.swift */; };
 		63EE610D1C406E2200AFC2CF /* UsergridSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 63AF0F471BBC4EF6009D4196 /* UsergridSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63F037201E53C716009714B4 /* TestSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0371F1E53C716009714B4 /* TestSetup.swift */; };
+		63F037211E53C716009714B4 /* TestSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0371F1E53C716009714B4 /* TestSetup.swift */; };
+		63F037221E53C716009714B4 /* TestSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0371F1E53C716009714B4 /* TestSetup.swift */; };
 		63F36F0F1C458AAE00CEEF54 /* UsergridRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */; };
 		63F36F101C458AAE00CEEF54 /* UsergridRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */; };
 		63F36F111C458AAE00CEEF54 /* UsergridRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */; };
@@ -178,6 +181,7 @@
 		63E7DD2E1C514CA200D84B12 /* UsergridSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridSessionDelegate.swift; sourceTree = "<group>"; };
 		63EE60D81C404AB700AFC2CF /* UsergridResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridResponseError.swift; sourceTree = "<group>"; };
 		63EE610B1C406E1600AFC2CF /* UsergridSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UsergridSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63F0371F1E53C716009714B4 /* TestSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSetup.swift; sourceTree = "<group>"; };
 		63F36F0E1C458AAE00CEEF54 /* UsergridRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsergridRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -303,6 +307,7 @@
 		63AF0F571BBC528E009D4196 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				63F0371F1E53C716009714B4 /* TestSetup.swift */,
 				63AF0F591BBC528E009D4196 /* ASSET_Tests.swift */,
 				63AF0F5A1BBC528E009D4196 /* AUTH_Tests.swift */,
 				63AF0F5B1BBC528E009D4196 /* ClientCreationTests.swift */,
@@ -498,7 +503,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Apigee Inc.";
 				TargetAttributes = {
 					630A219E1C49BFFC008BE87F = {
@@ -615,6 +620,7 @@
 				630A21AE1C49C011008BE87F /* Entity_Tests.swift in Sources */,
 				630A21AB1C49C011008BE87F /* AUTH_Tests.swift in Sources */,
 				630A21B21C49C011008BE87F /* User_Tests.swift in Sources */,
+				63F037211E53C716009714B4 /* TestSetup.swift in Sources */,
 				630A21B11C49C011008BE87F /* PUT_Tests.swift in Sources */,
 				630A21AD1C49C011008BE87F /* CONNECTION_Tests.swift in Sources */,
 				630A21AF1C49C011008BE87F /* GET_Tests.swift in Sources */,
@@ -630,6 +636,7 @@
 				630A21C81C49C4C0008BE87F /* Entity_Tests.swift in Sources */,
 				630A21C61C49C4C0008BE87F /* ClientCreationTests.swift in Sources */,
 				630A21C41C49C4C0008BE87F /* ASSET_Tests.swift in Sources */,
+				63F037221E53C716009714B4 /* TestSetup.swift in Sources */,
 				630A21CC1C49C4C0008BE87F /* User_Tests.swift in Sources */,
 				630A21CB1C49C4C0008BE87F /* PUT_Tests.swift in Sources */,
 				630A21C51C49C4C0008BE87F /* AUTH_Tests.swift in Sources */,
@@ -671,6 +678,7 @@
 				630A218A1C49BDDE008BE87F /* User_Tests.swift in Sources */,
 				630A21891C49BDDE008BE87F /* PUT_Tests.swift in Sources */,
 				630A21821C49BDD3008BE87F /* AUTH_Tests.swift in Sources */,
+				63F037201E53C716009714B4 /* TestSetup.swift in Sources */,
 				630A21851C49BDDE008BE87F /* CONNECTION_Tests.swift in Sources */,
 				630A21871C49BDDE008BE87F /* GET_Tests.swift in Sources */,
 				630A21831C49BDDE008BE87F /* ASSET_Tests.swift in Sources */,
@@ -893,7 +901,7 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
@@ -908,7 +916,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
 		};
@@ -916,6 +924,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -937,6 +946,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -968,8 +978,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1017,8 +1029,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1051,6 +1065,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1072,6 +1087,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1092,6 +1108,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1107,6 +1124,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
@@ -1114,6 +1132,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1129,6 +1148,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
 		};

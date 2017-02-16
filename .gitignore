@@ -26,3 +26,5 @@ ActivityFeed/ActivityFeed.xcworkspace/xcuserdata/ApigeeCorporation.xcuserdatad/x
 
 #Intellij
 .idea
+/Samples/ActivityFeed/Pods
+/Samples/ActivityFeed/Podfile.lock

@@ -30,20 +30,18 @@ import Foundation
 
 class ASSET_Tests: XCTestCase {
 
-    static let collectionName = "books"
-    static let entityUUID = "f4078aca-2fb1-11e5-8eb2-e13f8369aad1"
+    static let collectionName = "assetTestEntities"
     static let pngLocation = "TestAssets/test.png"
     static let jpgLocation = "TestAssets/UsergridGuy.jpg"
     static let imageName = "test"
 
     override func setUp() {
         super.setUp()
-        Usergrid.initSharedInstance(orgId:ClientCreationTests.orgId, appId: ClientCreationTests.appId)
-        Usergrid.persistCurrentUserInKeychain = false
+        Usergrid.authMode = .none
     }
 
     override func tearDown() {
-        Usergrid._sharedClient = nil
+        Usergrid.authMode = .user
         super.tearDown()
     }
 
@@ -79,7 +77,7 @@ class ASSET_Tests: XCTestCase {
     }
 
     func test_IMAGE_UPLOAD() {
-        let getExpect = self.expectation(description: "\(#function)")
+        let expect = self.expectation(description: "\(#function)")
         let uploadProgress : UsergridAssetRequestProgress = { (bytes,expected) in
             print("UPLOAD PROGRESS BLOCK: BYTES:\(bytes) --- EXPECTED:\(expected)")
         }
@@ -87,7 +85,7 @@ class ASSET_Tests: XCTestCase {
             print("DOWNLOAD PROGRESS BLOCK: BYTES:\(bytes) --- EXPECTED:\(expected)")
         }
 
-        Usergrid.GET(ASSET_Tests.collectionName, uuidOrName:ASSET_Tests.entityUUID) { (response) in
+        Usergrid.POST(UsergridEntity(type:ASSET_Tests.collectionName)) { response in
             XCTAssertTrue(Thread.isMainThread)
 
             let entity = response.first!
@@ -129,21 +127,28 @@ class ASSET_Tests: XCTestCase {
                     let downloadedImage = UIImage(data: downloadedAsset!.data)
                     XCTAssertEqual(UIImagePNGRepresentation(localImage!), UIImagePNGRepresentation(downloadedImage!))
                     XCTAssertNotNil(downloadedImage)
-                    getExpect.fulfill()
+
+                    Usergrid.DELETE(entity) { response in
+                        XCTAssertTrue(response.ok)
+                        XCTAssertEqual(response.entity?.uuid, entity.uuid)
+
+                        expect.fulfill()
+                    }
                 }
             }
+
         }
         self.waitForExpectations(timeout: 100, handler: nil)
     }
 
     func deleteUser(_ user:UsergridUser,expectation:XCTestExpectation) {
+        Usergrid._sharedClient.currentUser = nil
         user.remove() { removeResponse in
             XCTAssertTrue(Thread.isMainThread)
             XCTAssertNotNil(removeResponse)
             XCTAssertTrue(removeResponse.ok)
             XCTAssertNotNil(removeResponse.user)
             XCTAssertNotNil(removeResponse.users)
-            print(removeResponse.error)
             expectation.fulfill()
         }
     }

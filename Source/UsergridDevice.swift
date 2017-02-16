@@ -91,7 +91,7 @@ public class UsergridDevice : UsergridEntity {
 
     - parameter aDecoder: The decoder.
 
-    - returns: A decoded `UsergridUser` object.
+    - returns: A decoded `UsergridDevice` object.
     */
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -150,6 +150,7 @@ public class UsergridDevice : UsergridEntity {
     - Warning: When setting a properties value must be a valid JSON object.
 
     - Example usage:
+     
         ```
         let uuid = usergridDevice["uuid"]
         ```

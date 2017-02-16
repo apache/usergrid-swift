@@ -32,7 +32,13 @@ The `UsergridClient` class is the base handler for making client connections to 
 */
 public class UsergridClient: NSObject, NSCoding {
 
-    static let DEFAULT_BASE_URL = "https://api.usergrid.com"
+    // MARK: - Static Variables -
+
+    /// The default base URL for all calls made by the UsergridClient instances.
+    public static let DEFAULT_BASE_URL = "https://apibaas-trial.apigee.net"
+
+    /// The default auth mode used when creating UsergridClient instances.
+    public static let DEFAULT_AUTH_MODE: UsergridAuthMode = .user
 
     // MARK: - Instance Properties -
 
@@ -521,7 +527,8 @@ public class UsergridClient: NSObject, NSCoding {
     - parameter completion: The optional completion block that will be called once the request has completed.
     */
     public func PUT(_ type: String, jsonBody:[String:Any], completion: UsergridResponseCompletion? = nil) {
-        guard let uuidOrName = (jsonBody[UsergridEntityProperties.uuid.stringValue] ?? jsonBody[UsergridEntityProperties.name.stringValue]) as? String
+        guard let uuidOrName = jsonBody[UsergridEntityProperties.uuid.stringValue] as? String
+                                ?? jsonBody[UsergridEntityProperties.name.stringValue] as? String
         else {
             completion?(UsergridResponse(client:self, errorName: "jsonBody not valid.", errorDescription: "The `jsonBody` must contain a valid value for either `uuid` or `name`."))
             return

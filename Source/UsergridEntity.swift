@@ -188,7 +188,7 @@ open class UsergridEntity: NSObject, NSCoding {
 
     - parameter aDecoder: The decoder.
 
-    - returns: A decoded `UsergridUser` object.
+    - returns: A decoded `UsergridEntity` object.
     */
     required public init?(coder aDecoder: NSCoder) {
         guard let properties = aDecoder.decodeObject(forKey: "properties") as? [String:Any]
@@ -220,6 +220,7 @@ open class UsergridEntity: NSObject, NSCoding {
     Subscript for the `UsergridEntity` class.
     
     - Example usage:
+     
         ```
         let propertyValue = usergridEntity["propertyName"]
         usergridEntity["propertyName"] = propertyValue

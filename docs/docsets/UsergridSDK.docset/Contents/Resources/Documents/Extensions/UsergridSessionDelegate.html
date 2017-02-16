@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UsergridAuthMode Enum Reference</title>
+    <title>UsergridSessionDelegate Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,18 +10,18 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/UsergridAuthMode" class="dashAnchor"></a>
-    <a title="UsergridAuthMode Enum Reference"></a>
+    <a name="//apple_ref/swift/Extension/UsergridSessionDelegate" class="dashAnchor"></a>
+    <a title="UsergridSessionDelegate Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">UsergridSDK Docs</a> (100% documented)</p>
+        <p><a href="../index.html">UsergridSDK Docs</a></p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
         <a href="../index.html">UsergridSDK Reference</a>
         <img id="carat" src="../img/carat.png" />
-        UsergridAuthMode Enum Reference
+        UsergridSessionDelegate Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -126,6 +126,9 @@
               <li class="nav-group-task">
                 <a href="../Extensions/Date.html">Date</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UsergridSessionDelegate.html">UsergridSessionDelegate</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -162,14 +165,8 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>UsergridAuthMode</h1>
-              <div class="declaration">
-                <div class="language">
-                  <pre class="highlight"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">UsergridAuthMode</span> <span class="p">:</span> <span class="kt">Int</span></code></pre>
-
-                </div>
-              </div>
-            <p>An enumeration that is used to determine what the <code><a href="../Classes/UsergridClient.html">UsergridClient</a></code> will use for authorization.</p>
+            <h1>UsergridSessionDelegate</h1>
+            <p>Undocumented</p>
 
           </section>
           <section class="section task-group-section">
@@ -178,9 +175,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK16UsergridAuthMode4noneFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/none" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK16UsergridAuthMode4noneFMS0_S0_">none</a>
+                    <a name="/s:FC11UsergridSDK23UsergridSessionDelegate10urlSessionFTCSo10URLSession8dataTaskCSo18URLSessionDataTask10didReceiveCSo11URLResponse17completionHandlerFOS1_19ResponseDispositionT__T_"></a>
+                    <a name="//apple_ref/swift/Method/urlSession(_:dataTask:didReceive:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK23UsergridSessionDelegate10urlSessionFTCSo10URLSession8dataTaskCSo18URLSessionDataTask10didReceiveCSo11URLResponse17completionHandlerFOS1_19ResponseDispositionT__T_">urlSession(_:dataTask:didReceive:completionHandler:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -188,30 +185,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>If the API call fails, the activity is treated as a failure with an appropriate HTTP status code.</p>
+                        <p>Undocumented</p>
 
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="k">none</span></code></pre>
-
-                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO11UsergridSDK16UsergridAuthMode4userFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/user" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK16UsergridAuthMode4userFMS0_S0_">user</a>
+                    <a name="/s:FC11UsergridSDK23UsergridSessionDelegate10urlSessionFTCSo10URLSession8dataTaskCSo18URLSessionDataTask10didReceiveV10Foundation4Data_T_"></a>
+                    <a name="//apple_ref/swift/Method/urlSession(_:dataTask:didReceive:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC11UsergridSDK23UsergridSessionDelegate10urlSessionFTCSo10URLSession8dataTaskCSo18URLSessionDataTask10didReceiveV10Foundation4Data_T_">urlSession(_:dataTask:didReceive:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -219,51 +204,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>If a non-expired <code><a href="../Classes/UsergridUserAuth.html">UsergridUserAuth</a></code> exists in <code><a href="../Classes/UsergridClient.html#/s:vC11UsergridSDK14UsergridClient11currentUserGSqCS_12UsergridUser_">UsergridClient.currentUser</a></code>, this token is used to authenticate all API calls.</p>
+                        <p>Undocumented</p>
 
-<p>If the API call fails, the activity is treated as a failure with an appropriate HTTP status code (This behavior is identical to authMode=.None).</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">user</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO11UsergridSDK16UsergridAuthMode3appFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/app" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO11UsergridSDK16UsergridAuthMode3appFMS0_S0_">app</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>If a non-expired <code><a href="../Classes/UsergridAppAuth.html">UsergridAppAuth</a></code> exists in <code><a href="../Classes/UsergridClient.html#/s:vC11UsergridSDK14UsergridClient7appAuthGSqCS_15UsergridAppAuth_">UsergridClient.appAuth</a></code>, this token is used to authenticate all API calls.</p>
-
-<p>If the API call fails, the activity is treated as a failure with an appropriate HTTP status code (This behavior is identical to authMode=.None).</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">app</span></code></pre>
-
-                        </div>
                       </div>
                     </section>
                   </div>
@@ -273,7 +215,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://github.com/apache/usergrid-swift" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2017-02-13)</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/apache/usergrid-swift" target="_blank" rel="external">Robert Walsh</a>. All rights reserved. (Last updated: 2017-02-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -29,46 +29,32 @@ import XCTest
 
 class ClientCreationTests: XCTestCase {
 
-    static let orgId = "rwalsh"
-    static let appId = "sandbox"
-
-    override func setUp() {
-        super.setUp()
-        Usergrid.initSharedInstance(orgId:ClientCreationTests.orgId, appId: ClientCreationTests.appId)
-        Usergrid.persistCurrentUserInKeychain = false
-    }
-
-    override func tearDown() {
-        Usergrid._sharedClient = nil
-        super.tearDown()
-    }
-
-    func test_INSTANCE_POINTERS() {
-        XCTAssertNotNil(Usergrid.sharedInstance)
-    }
+    static let orgId = "rjwalsh"
+    static let appId = "sdk.demo"
+    let client = UsergridClient(orgId:ClientCreationTests.orgId, appId: ClientCreationTests.appId)
 
     func test_CLIENT_PROPERTIES() {
-        XCTAssertEqual(Usergrid.appId, ClientCreationTests.appId)
-        XCTAssertEqual(Usergrid.orgId, ClientCreationTests.orgId)
-        XCTAssertEqual(Usergrid.authMode, UsergridAuthMode.user)
-        XCTAssertEqual(Usergrid.persistCurrentUserInKeychain, false)
-        XCTAssertEqual(Usergrid.baseUrl, UsergridClient.DEFAULT_BASE_URL)
-        XCTAssertEqual(Usergrid.clientAppURL, "\(UsergridClient.DEFAULT_BASE_URL)/\(ClientCreationTests.orgId)/\(ClientCreationTests.appId)" )
-        XCTAssertNil(Usergrid.currentUser)
-        XCTAssertNil(Usergrid.userAuth)
+        XCTAssertEqual(client.appId, ClientCreationTests.appId)
+        XCTAssertEqual(client.orgId, ClientCreationTests.orgId)
+        XCTAssertEqual(client.authMode, UsergridAuthMode.user)
+        XCTAssertEqual(client.persistCurrentUserInKeychain, true)
+        XCTAssertEqual(client.baseUrl, UsergridClient.DEFAULT_BASE_URL)
+        XCTAssertEqual(client.clientAppURL, "\(UsergridClient.DEFAULT_BASE_URL)/\(ClientCreationTests.orgId)/\(ClientCreationTests.appId)" )
+        XCTAssertNil(client.currentUser)
+        XCTAssertNil(client.userAuth)
     }
 
     func test_CLIENT_NSCODING() {
-        let sharedInstanceAsData = NSKeyedArchiver.archivedData(withRootObject: Usergrid.sharedInstance)
+        let sharedInstanceAsData = NSKeyedArchiver.archivedData(withRootObject: client)
         let newInstanceFromData = NSKeyedUnarchiver.unarchiveObject(with: sharedInstanceAsData) as? UsergridClient
 
         XCTAssertNotNil(newInstanceFromData)
 
         if let newInstance = newInstanceFromData {
-            XCTAssertEqual(Usergrid.appId, newInstance.appId)
-            XCTAssertEqual(Usergrid.orgId, newInstance.orgId)
-            XCTAssertEqual(Usergrid.authMode, newInstance.authMode)
-            XCTAssertEqual(Usergrid.baseUrl, newInstance.baseUrl)
+            XCTAssertEqual(client.appId, newInstance.appId)
+            XCTAssertEqual(client.orgId, newInstance.orgId)
+            XCTAssertEqual(client.authMode, newInstance.authMode)
+            XCTAssertEqual(client.baseUrl, newInstance.baseUrl)
         }
     }
 }

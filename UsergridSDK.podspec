@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'UsergridSDK'
-  s.version = ‘2.1.3’
+  s.version = '2.1.3'
   s.summary = 'Usergrid SDK written in Swift'
   s.homepage = 'https://github.com/apache/usergrid-swift'
   s.license = 'Apache 2.0'

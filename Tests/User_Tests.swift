@@ -45,7 +45,6 @@ class User_Tests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        Usergrid.initSharedInstance(orgId:ClientCreationTests.orgId, appId: ClientCreationTests.appId)
         Usergrid.authMode = .user
         Usergrid.persistCurrentUserInKeychain = false
 
@@ -60,8 +59,8 @@ class User_Tests: XCTestCase {
     }
 
     override func tearDown() {
-        Usergrid._sharedClient = nil        
         super.tearDown()
+        Usergrid.sharedInstance.currentUser = nil
     }
 
     func test_USER_INIT() {
@@ -163,7 +162,6 @@ class User_Tests: XCTestCase {
             XCTAssertTrue(removeResponse.ok)
             XCTAssertNotNil(removeResponse.user)
             XCTAssertNotNil(removeResponse.users)
-            print(removeResponse.error)
             expectation.fulfill()
         }
     }
@@ -208,8 +206,6 @@ class User_Tests: XCTestCase {
             XCTAssertNil(error)
             XCTAssertTrue(available)
 
-//            self.deleteUser(userExpect)
-
             self.user.create() { (createResponse) in
                 XCTAssertTrue(Thread.isMainThread)
                 XCTAssertNotNil(createResponse)
@@ -233,7 +229,7 @@ class User_Tests: XCTestCase {
 
                         XCTAssertNotNil(currentUser)
                         XCTAssertNotNil(Usergrid.currentUser)
-                        XCTAssertEqual(currentUser, Usergrid.currentUser!)
+                        XCTAssertEqual(currentUser, Usergrid.currentUser)
 
                         self.user.reauthenticate() { auth, reauthedUser, error in
                             XCTAssertTrue(Thread.isMainThread)

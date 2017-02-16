@@ -40,6 +40,7 @@ final class UsergridRequestManager {
         self.client = client
 
         let config = URLSessionConfiguration.default
+        config.httpMaximumConnectionsPerHost = 20
 
         #if os(tvOS)
         config.httpAdditionalHeaders = ["User-Agent": "usergrid-tvOS/v\(UsergridSDKVersion)"]
