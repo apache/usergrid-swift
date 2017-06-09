@@ -184,7 +184,7 @@ POST and PUT requests both require a JSON body payload. You can pass either a Sw
 - To create a new entity in a collection (**POST**):
 
 ```swift
-var entity = UsergridEntity(type: "restaurant", propertyDict: ["restaurant": "Dino's Deep Dish","cuisine": "pizza"])
+var entity = UsergridEntity.init(type: "restaurant", name:"Dinos", propertyDict: ["restaurant": "Dino's Deep Dish","cuisine": "pizza"])
 	
 Usergrid.POST(entity) { response in
     // entity should now have a uuid property and be created
@@ -192,8 +192,8 @@ Usergrid.POST(entity) { response in
 	
 // you can also POST an array of entities:
 	
-var entities = [UsergridEntity(type: "restaurant", propertyDict:["restaurant": "Dino's Deep Dish","cuisine": "pizza"]), 
-                UsergridEntity(type: "restaurant", propertyDict:["restaurant": "Pizza da Napoli","cuisine": "pizza"])]
+var entities = [UsergridEntity.init(type: "restaurant", name:"Dinos", propertyDict:["restaurant": "Dino's Deep Dish","cuisine": "pizza"]), 
+                UsergridEntity.init(type: "restaurant", name:"Napoli", propertyDict:["restaurant": "Pizza da Napoli","cuisine": "pizza"])]
 	
 Usergrid.POST(entities) { response in
     // response.entities should now contain now valid posted entities.
