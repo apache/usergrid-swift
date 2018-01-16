@@ -143,7 +143,7 @@ class ASSET_Tests: XCTestCase {
             XCTAssertTrue(removeResponse.ok)
             XCTAssertNotNil(removeResponse.user)
             XCTAssertNotNil(removeResponse.users)
-            print(removeResponse.error)
+            print(removeResponse.error ?? "No error.")
             expectation.fulfill()
         }
     }

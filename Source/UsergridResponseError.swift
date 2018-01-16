@@ -42,12 +42,12 @@ public class UsergridResponseError: NSObject {
 
     /// The description.
     public override var description : String {
-        return "Error Name: \(errorName).  Error Description: \(errorDescription).  Exception: \(exception)."
+        return "Error Name: \(errorName).  Error Description: \(errorDescription).  Exception: \(exception ?? "")."
     }
 
     /// The debug description.
     public override var debugDescription : String {
-        return "Error Name: \(errorName).  Error Description: \(errorDescription).  Exception: \(exception)."
+        return "Error Name: \(errorName).  Error Description: \(errorDescription).  Exception: \(exception ?? "")."
     }
 
     // MARK: - Initialization -

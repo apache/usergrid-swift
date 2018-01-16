@@ -89,7 +89,7 @@ open class UsergridEntity: NSObject, NSCoding {
     public var jsonObjectValue : [String:Any] { return self.properties }
 
     /// The string value.
-    public var stringValue : String { return NSString(data: try! JSONSerialization.data(withJSONObject: self.jsonObjectValue, options: .prettyPrinted), encoding: String.Encoding.utf8.rawValue) as! String }
+    public var stringValue : String { return NSString(data: try! JSONSerialization.data(withJSONObject: self.jsonObjectValue, options: .prettyPrinted), encoding: String.Encoding.utf8.rawValue)! as String }
 
     /// The description.
     open override var description : String {
