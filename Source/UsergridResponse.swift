@@ -96,8 +96,8 @@ public class UsergridResponse: NSObject {
 
     /// The string value.
     public var stringValue : String {
-        if let responseJSON = self.responseJSON {
-            return NSString(data: try! JSONSerialization.data(withJSONObject: responseJSON, options: .prettyPrinted), encoding: String.Encoding.utf8.rawValue) as? String ?? ""
+        if let responseJSON = self.responseJSON, let string = NSString(data: try! JSONSerialization.data(withJSONObject: responseJSON, options: .prettyPrinted), encoding: String.Encoding.utf8.rawValue) as String? {
+            return string
         } else {
             return error?.description ?? ""
         }

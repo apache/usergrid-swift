@@ -48,7 +48,7 @@ class ASSET_Tests: XCTestCase {
     }
 
     func getFullPathOfFile(_ fileLocation:String) -> String {
-        return (Bundle(for: object_getClass(self)).resourcePath!) + "/\(fileLocation)"
+        return (Bundle(for: object_getClass(self)!).resourcePath!) + "/\(fileLocation)"
     }
 
     func test_ASSET_INIT() {
