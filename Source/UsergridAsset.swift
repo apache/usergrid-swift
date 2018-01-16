@@ -47,7 +47,7 @@ Unless defined, whenever possible, the content-type will be inferred from the da
 */
 public class UsergridAsset: NSObject, NSCoding {
 
-    internal static let DEFAULT_FILE_NAME = "file"
+    public static let DEFAULT_FILE_NAME = "file"
 
     // MARK: - Instance Properties -
 
