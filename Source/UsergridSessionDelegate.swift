@@ -49,7 +49,7 @@ extension UsergridSessionDelegate : URLSessionTaskDelegate {
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let requestWrapper = requestDelegates[task.taskIdentifier] {
-            requestWrapper.error = error as? NSError // WTF
+            requestWrapper.error = error as NSError? // WTF
             requestWrapper.completion(requestWrapper)
         }
         self.removeRequestDelegate(task)

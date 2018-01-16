@@ -106,10 +106,10 @@ extension UsergridRequestManager {
                     }
                 }
                 if createdUser == nil {
-                    responseError = UsergridResponseError(jsonDictionary: jsonDict) ?? UsergridResponseError(errorName: "Auth Failed.", errorDescription: "Error Description: \(error?.localizedDescription).")
+                    responseError = UsergridResponseError(jsonDictionary: jsonDict) ?? UsergridResponseError(errorName: "Auth Failed.", errorDescription: "Error Description: \(error?.localizedDescription ?? "").")
                 }
             } else {
-                responseError = UsergridResponseError(errorName: "Auth Failed.", errorDescription: "Error Description: \(error?.localizedDescription).")
+                responseError = UsergridResponseError(errorName: "Auth Failed.", errorDescription: "Error Description: \(error?.localizedDescription ?? "").")
             }
 
             DispatchQueue.main.async {
@@ -129,7 +129,7 @@ extension UsergridRequestManager {
                 appAuth.accessToken = tokenAndExpiry.token
                 appAuth.expiry = tokenAndExpiry.expiry
             } else {
-                responseError = UsergridResponseError(errorName: "Auth Failed.", errorDescription: "Error Description: \(error?.localizedDescription).")
+                responseError = UsergridResponseError(errorName: "Auth Failed.", errorDescription: "Error Description: \(error?.localizedDescription ?? "").")
             }
 
             DispatchQueue.main.async {
